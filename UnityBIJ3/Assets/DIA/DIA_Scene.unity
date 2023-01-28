@@ -328,8 +328,65 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 37.846, y: 152.985, z: 137.298}
+--- !u!1001 &795999545
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8300563521900221678, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300563521900221678, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300563521900221678, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300563521900221678, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300563521900221678, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9659258
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300563521900221678, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300563521900221678, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.2588191
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300563521900221678, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300563521900221678, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300563521900221678, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300563521900221678, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681345961053507156, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+      propertyPath: m_Name
+      value: DalleGreen_03
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
 --- !u!1001 &942877602
 PrefabInstance:
   m_ObjectHideFlags: 0
