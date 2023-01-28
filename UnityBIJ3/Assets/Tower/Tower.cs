@@ -28,9 +28,9 @@ public class Tower : MonoBehaviour
         if(attackOnCooldown)
             return;
         
-        if(enemiesInRange.Count > 0 && enemiesInRange[0] == null)
+        if(enemiesInRange.Count > 0)
         {
-            enemiesInRange.RemoveAt(0);
+            enemiesInRange = FilterEnemiesInRange();
         }
         
         if(enemiesInRange.Count > 0)
@@ -63,5 +63,10 @@ public class Tower : MonoBehaviour
         attackOnCooldown = true;
         yield return new WaitForSeconds(attackCooldownInSeconds);
         attackOnCooldown = false;
+    }
+
+    List<GameObject> FilterEnemiesInRange()
+    {        
+        return enemiesInRange.Where(e => e != null).ToList();
     }
 }
