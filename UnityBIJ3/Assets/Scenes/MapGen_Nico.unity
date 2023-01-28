@@ -250,8 +250,9 @@ GameObject:
   - component: {fileID: 632310001}
   - component: {fileID: 632310000}
   - component: {fileID: 632310002}
+  - component: {fileID: 632310003}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,7 +307,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb7c06733760df4c800660b3e2cd33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexSize: 1
+  hexSize: 3
+--- !u!114 &632310003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632309999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6555d06dc6e144c9260ea53fd69ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emptyPrefabs:
+  - {fileID: 8351788409494111621, guid: 88cf5074d2464f04dbec67e87300ba1c, type: 3}
+  - {fileID: 1914120340982674485, guid: 5f43160f2e3d8594b8ff329d344d27c8, type: 3}
+  - {fileID: 6147046055366993395, guid: 14f9d486cce699c4aad237943c263ff6, type: 3}
+  - {fileID: 8681345961053507156, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+  - {fileID: 4458586629588751067, guid: 67ab6d49a9788524e8d1ea9e60d9edc9, type: 3}
+  - {fileID: 2448161675255772330, guid: cc28b94095097de4b927c308496a7786, type: 3}
+  fieldPrefabs:
+  - {fileID: 4339177405696719257, guid: 3354e60e17f2ebc4e9c1ffa129914650, type: 3}
+  barnPrefab: {fileID: 3379494580506947776, guid: cae763a729e352e4281c324c0f686bdf, type: 3}
+  hexSize: 3
 --- !u!1 &1861603250
 GameObject:
   m_ObjectHideFlags: 0

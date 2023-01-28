@@ -21,14 +21,17 @@ public class MapGenerator : MonoBehaviour
     float[,] perlinMap;
 
     string generationKey = string.Empty;
+    private bool isGizmos;
 
     private void OnDrawGizmos()
     {
+        isGizmos = true;
         CheckInit();
     }
 
     private void OnDrawGizmosSelected()
     {
+        isGizmos = true;
         CheckInit();
     }
 
@@ -63,6 +66,15 @@ public class MapGenerator : MonoBehaviour
         if (mapGizmos != null)
         {
             mapGizmos.Refresh(map);
+        }
+
+        if (!isGizmos)
+        {
+            var mapDrawer = GetComponent<MapDrawer>();
+            if (mapDrawer != null)
+            {
+                mapDrawer.Refresh(map);
+            }
         }
     }
 
@@ -137,7 +149,7 @@ public class MapGenerator : MonoBehaviour
 
     private bool FenceShouldBeCleanned(int x, int z)
     {
-        return 
+        return
             SurroundedByFenceOrEmpty(x - 2, z) &&
             SurroundedByFenceOrEmpty(x + 2, z) &&
             SurroundedByFenceOrEmpty(x - 1, z - 1) &&
