@@ -200,8 +200,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356656243}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.000000018473235, y: 0.90630776, z: -0.42261836, w: -0.00000003961597}
+  m_LocalPosition: {x: 133.5, y: 24.1, z: 123.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -277,7 +277,7 @@ MonoBehaviour:
   zOffset: 84.29
   yOffset: -5
   height: 5
-  centerPosX: 50
+  centerPosX: 51
   centerPosZ: 23
   centerRadius: 21.25
   centerMultiplier: 11
@@ -320,14 +320,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6555d06dc6e144c9260ea53fd69ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyPrefabs:
+  fieldPrefabs:
   - {fileID: 8351788409494111621, guid: 88cf5074d2464f04dbec67e87300ba1c, type: 3}
   - {fileID: 1914120340982674485, guid: 5f43160f2e3d8594b8ff329d344d27c8, type: 3}
   - {fileID: 6147046055366993395, guid: 14f9d486cce699c4aad237943c263ff6, type: 3}
   - {fileID: 8681345961053507156, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
   - {fileID: 4458586629588751067, guid: 67ab6d49a9788524e8d1ea9e60d9edc9, type: 3}
   - {fileID: 2448161675255772330, guid: cc28b94095097de4b927c308496a7786, type: 3}
-  fieldPrefabs:
   - {fileID: 4339177405696719257, guid: 3354e60e17f2ebc4e9c1ffa129914650, type: 3}
   barnPrefab: {fileID: 3379494580506947776, guid: cae763a729e352e4281c324c0f686bdf, type: 3}
   hexSize: 3

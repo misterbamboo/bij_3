@@ -2,7 +2,6 @@
 
 public class MapDrawer : MonoBehaviour
 {
-    [SerializeField] GameObject[] emptyPrefabs;
     [SerializeField] GameObject[] fieldPrefabs;
     [SerializeField] GameObject barnPrefab;
 
@@ -46,7 +45,7 @@ public class MapDrawer : MonoBehaviour
         switch (type)
         {
             case MapCellTypes.Empty:
-                prefab = GetRandomPrefab(emptyPrefabs);
+                prefab = GetRandomPrefab(fieldPrefabs);
                 break;
             case MapCellTypes.Fence:
                 prefab = GetRandomPrefab(fieldPrefabs);
@@ -56,6 +55,7 @@ public class MapDrawer : MonoBehaviour
                 break;
             case MapCellTypes.Barn:
                 prefab = barnPrefab;
+                pos += new Vector3(0, 0.5f, 0);
                 break;
             default:
                 prefab = null;
