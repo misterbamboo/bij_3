@@ -9,25 +9,24 @@ public class Tower : MonoBehaviour
     GameObject projectile;
     
     [SerializeField]
-    float cooldownFireInSeconds = 1f;
+    float attackCooldownInSeconds = 1f;
 
-    bool isAvailable = true;
+    bool attackOnCooldown = false;
 
     List<GameObject> enemiesInRange = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponentInChildren<DetectionZone>().EnemyEnterRange += AddInRange;
-        gameObject.GetComponentInChildren<DetectionZone>().EnemyOutOfRange += RemoveFromRange;
+        gameObject.GetComponentInChildren<DetectionZone>().EnterRange += AddInRange;
+        gameObject.GetComponentInChildren<DetectionZone>().ExitRange += RemoveFromRange;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!isAvailable)
+        if(attackOnCooldown)
             return;
-
         
         if(enemiesInRange.Count > 0 && enemiesInRange[0] == null)
         {
@@ -56,14 +55,13 @@ public class Tower : MonoBehaviour
     void Attack(GameObject target)
     {
         var newPojectile = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
-        newPojectile.Init(gameObject, target);
+        newPojectile.Init(target);
     }
 
-    // wait for cooldown duration
     IEnumerator Cooldown()
     {
-        isAvailable = false;
-        yield return new WaitForSeconds(cooldownFireInSeconds);
-        isAvailable = true;
+        attackOnCooldown = true;
+        yield return new WaitForSeconds(attackCooldownInSeconds);
+        attackOnCooldown = false;
     }
 }

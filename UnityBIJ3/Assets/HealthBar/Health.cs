@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public event Action<float> HealthUpdate = delegate { };
+    public event Action NoMoreHealth = delegate { };
+
     [SerializeField]
     float maxHealth = 100f;
 
@@ -14,17 +18,14 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void Domage(float amount)
+    public void Damage(float amount)
     {
         currentHealth -= amount;        
+
+        HealthUpdate(currentHealth);
         if(currentHealth <= 0)
         {
-            Die();
+           NoMoreHealth();
         }
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 }
