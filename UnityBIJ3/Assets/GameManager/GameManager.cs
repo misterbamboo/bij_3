@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSeconds(1);
             currentTimeInSeconds++;
             OnSecondElapse(currentTimeInSeconds);
         }

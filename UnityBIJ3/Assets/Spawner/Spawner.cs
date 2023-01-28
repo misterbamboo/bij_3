@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
     {
         foreach (GameObject prefab in prefabs)
         {
-            yield return new WaitForSecondsRealtime(3);
+            yield return new WaitForSeconds(3);
             Instantiate(prefab, transform.position, transform.rotation);
         }        
     }
