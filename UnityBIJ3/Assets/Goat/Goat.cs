@@ -4,20 +4,75 @@ using UnityEngine;
 
 public class Goat : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    float domage = 10f;
+
+    [SerializeField]
+    float speed = 10f;
+
+    [SerializeField]
+    float attackCooldownInSeconds = 1f;
+
+    GameObject target = null;
+
+    bool attackOnCooldown = false;
+
     void Start()
     {
-        
+        var detectionZone = GetComponentInChildren<DetectionZone>();
+        gameObject.GetComponentInChildren<DetectionZone>().EnterRange += FocusTarget;
+        gameObject.GetComponentInChildren<DetectionZone>().ExitRange += UnfocusTarget;
+        gameObject.GetComponentInChildren<Health>().NoMoreHealth += Die;
     }
 
     // Update is called once per frame
     void Update()
     {
-        MoveForward();
+        if(target != null)
+        {
+            Attack();
+        }
+        else
+        {
+            MoveForward();
+        }
     }
 
-    public void MoveForward()
+    void MoveForward()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime);
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+    }
+
+    void FocusTarget(GameObject target)
+    {
+        this.target = target;
+    }
+
+    void UnfocusTarget(GameObject target)
+    {
+        this.target = null;
+    }
+
+    void Attack()
+    {
+        if(attackOnCooldown)
+        {
+            return;
+        }
+
+        target.GetComponent<Health>().Damage(domage);
+        StartCoroutine(Cooldown());
+    }
+
+    IEnumerator Cooldown()
+    {
+        attackOnCooldown = true;
+        yield return new WaitForSeconds(attackCooldownInSeconds);
+        attackOnCooldown = false;
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }

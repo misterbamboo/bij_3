@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(CalculTimeInSeconds());
+        var barn = GameObject.FindGameObjectWithTag("Barn");
+        barn.GetComponentInChildren<Health>().NoMoreHealth += GameOver;
     }
 
     // Coroutine augment currenTimeInSeconds at each seconds
@@ -19,9 +21,14 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSeconds(1);
             currentTimeInSeconds++;
             OnSecondElapse(currentTimeInSeconds);
         }
+    }
+
+    void GameOver()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }
