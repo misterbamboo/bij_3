@@ -5,39 +5,33 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
-    float speed = 10f;
+    float Damage = 25.0f;
 
     [SerializeField]
-    float Domage = 1f;
+    float speed = 10.0f;
 
-    GameObject target = null;
+    GameObject target;
 
-    public GameObject towerParent;
-
-    void Update()
+    public void Init(GameObject target)
     {
-        if(target != null)   
-        {
-            MoveTowardsTarget();
-        }
-    }
-
-    public void Init(GameObject tower, GameObject target)
-    {
-        towerParent = tower;
         this.target = target;
     }
 
-    public void MoveTowardsTarget()
+    void Update()
     {
+        if(target == null)
+        {
+            return;
+        }
+
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject == target)
+        if(other.gameObject.tag == "Enemy")
         {
-            target.GetComponent<Health>().Domage(Domage);
+            other.gameObject.GetComponent<Health>().Damage(Damage);
             Destroy(gameObject);
         }
     }

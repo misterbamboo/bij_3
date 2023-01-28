@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a6073fc61f0154ca2a1f32dc51e59b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 5719231638157980801, guid: 9a571ee61b339fe4d93e6facf48f9886, type: 3}
+  projectile: {fileID: 2499787680984995121, guid: 5c068718dd2b03b45acc44d29a0b9b90, type: 3}
+  attackCooldownInSeconds: 1
 --- !u!1 &4655076665353907276
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5b81737f4f2aa4fb6fb4a9b5c0ae1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TagSelector: Enemy
 --- !u!135 &3237068921110542380
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -195,7 +197,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7073332415303818448}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 4.837736

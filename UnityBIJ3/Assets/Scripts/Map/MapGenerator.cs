@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
@@ -18,24 +17,68 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] float centerRadius = 50;
     [SerializeField] float centerMultiplier = 5;
 
-    [SerializeField] float hexSize = 1f;
-    float hexWidth;
-    float hexHeight;
+    Map map;
+    float[,] perlinMap;
 
-    float[,] map;
+    string generationKey = string.Empty;
+    private bool isGizmos;
 
-    void Start()
+    private void OnDrawGizmos()
     {
-        map = new float[mapSize * 2, mapSize];
+        isGizmos = true;
+        CheckInit();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        isGizmos = true;
+        CheckInit();
+    }
+
+    private void Start()
+    {
+        CheckInit();
     }
 
     void Update()
     {
-        UpdateMap();
-        DrawMap();
+        CheckInit();
     }
 
-    private void UpdateMap()
+    private void CheckInit()
+    {
+        var currentGenerationKey = $"{mapSize};{xScale};{zScale};{xOffset};{zOffset};{yOffset};{height};{centerPosX};{centerPosZ};{centerRadius};{centerMultiplier}";
+        if (generationKey != currentGenerationKey)
+        {
+            perlinMap = new float[mapSize * 2, mapSize];
+            map = new Map(mapSize);
+            generationKey = currentGenerationKey;
+            RegenerateMap();
+        }
+    }
+
+    private void RegenerateMap()
+    {
+        UpdatePerlinMap();
+        SetMapCells();
+        CleanFences();
+        var mapGizmos = GetComponent<MapGizmos>();
+        if (mapGizmos != null)
+        {
+            mapGizmos.Refresh(map);
+        }
+
+        if (!isGizmos)
+        {
+            var mapDrawer = GetComponent<MapDrawer>();
+            if (mapDrawer != null)
+            {
+                mapDrawer.Refresh(map);
+            }
+        }
+    }
+
+    private void UpdatePerlinMap()
     {
         for (int zCoord = 0; zCoord < mapSize; zCoord++)
         {
@@ -59,57 +102,66 @@ public class MapGenerator : MonoBehaviour
                 var currentBlurValue = blurValue;
                 blurValue = value;
                 value = (currentBlurValue + value) / 2;
-                map[xCoord, zCoord] = Mathf.Clamp((value * height) + yOffset, 0, float.MaxValue);
+                perlinMap[xCoord, zCoord] = Mathf.Clamp((value * height) + yOffset, 0, float.MaxValue);
             }
         }
-
-        PrintMap();
     }
 
-    private void DrawMap()
+    private void SetMapCells()
     {
-        hexWidth = Mathf.Sqrt(3) * hexSize;
-        hexHeight = hexSize * 2;
-
         for (int zCoord = 0; zCoord < mapSize; zCoord++)
         {
             for (int x = 0; x < mapSize * 2; x += 2)
             {
                 int xCoord = x + (zCoord % 2);
 
-                if (map[xCoord, zCoord] > 0)
+                if (perlinMap[xCoord, zCoord] > 0)
                 {
-                    var color = HasEmptyCellArround(xCoord, zCoord) ? Color.blue : Color.green;
+                    var mapCell = HasEmptyCellArround(xCoord, zCoord) ? MapCellTypes.Fence : MapCellTypes.Field;
                     if (xCoord == centerPosX && zCoord == centerPosZ)
                     {
-                        color = Color.red;
+                        mapCell = MapCellTypes.Barn;
                     }
-                    DrawHex(zCoord, x / 2, color);
+                    map.SetMapCellType(new MapCellCoord(xCoord, zCoord), mapCell);
                 }
             }
         }
     }
 
-    private void DrawHex(int z, int x, Color color)
+    private void CleanFences()
     {
-        var xCorner = hexWidth / 2f;
-        var zCorner = hexHeight / 4f;
-        var xOff = (z % 2) * (hexWidth / 2f);
-        var pos = new Vector3(x * hexWidth + xOff, 0, z * 3f / 4f * hexHeight);
+        for (int zCoord = 0; zCoord < mapSize; zCoord++)
+        {
+            for (int x = 0; x < mapSize * 2; x += 2)
+            {
+                int xCoord = x + (zCoord % 2);
+                var type = map.GetMapCellType(xCoord, zCoord);
+                if (type == MapCellTypes.Fence)
+                {
+                    if (FenceShouldBeCleanned(xCoord, zCoord))
+                    {
+                        map.SetMapCellType(new MapCellCoord(xCoord, zCoord), MapCellTypes.Empty);
+                    }
+                }
+            }
+        }
+    }
 
-        var top = pos + new Vector3(0, 0, hexSize);
-        var topRight = pos + new Vector3(xCorner, 0, zCorner);
-        var bottomRight = pos + new Vector3(xCorner, 0, -zCorner);
-        var bottom = pos + new Vector3(0, 0, -hexSize);
-        var bottomLeft = pos + new Vector3(-xCorner, 0, -zCorner);
-        var topLeft = pos + new Vector3(-xCorner, 0, zCorner);
+    private bool FenceShouldBeCleanned(int x, int z)
+    {
+        return
+            SurroundedByFenceOrEmpty(x - 2, z) &&
+            SurroundedByFenceOrEmpty(x + 2, z) &&
+            SurroundedByFenceOrEmpty(x - 1, z - 1) &&
+            SurroundedByFenceOrEmpty(x - 1, z + 1) &&
+            SurroundedByFenceOrEmpty(x + 1, z - 1) &&
+            SurroundedByFenceOrEmpty(x + 1, z + 1);
+    }
 
-        Debug.DrawLine(top, topRight, color);
-        Debug.DrawLine(topRight, bottomRight, color);
-        Debug.DrawLine(bottomRight, bottom, color);
-        Debug.DrawLine(bottom, bottomLeft, color);
-        Debug.DrawLine(bottomLeft, topLeft, color);
-        Debug.DrawLine(topLeft, top, color);
+    private bool SurroundedByFenceOrEmpty(int x, int z)
+    {
+        var type = map.GetMapCellType(x, z);
+        return type == MapCellTypes.Fence || type == MapCellTypes.Empty;
     }
 
     private bool HasEmptyCellArround(int x, int z)
@@ -126,135 +178,8 @@ public class MapGenerator : MonoBehaviour
     private bool EmptyAt(int x, int z)
     {
         if (x < 0 || z < 0) return true;
-        if (x >= map.GetLength(0) || z >= map.GetLength(1)) return true;
+        if (x >= perlinMap.GetLength(0) || z >= perlinMap.GetLength(1)) return true;
 
-        return map[x, z] <= 0;
-    }
-
-    private void PrintMap()
-    {
-        //print("map:");
-        //print("--------------------------------");
-        //StringBuilder sb = new StringBuilder();
-        //for (int i = 0; i < map.GetLength(0); i++)
-        //{
-        //    for (int j = 0; j < map.GetLength(1); j++)
-        //    {
-        //        char c = map[i, j] > 0 ? '1' : '0';
-        //        sb.Append(c);
-        //    }
-        //    sb.AppendLine();
-        //}
-        //print(sb.ToString());
+        return perlinMap[x, z] <= 0;
     }
 }
-
-
-/*
- 00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000100000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000101010101000000000000000000000
-00000000000000000000010101000000000000000000000000
-00000000000000000010101010101000000000000000000000
-00000000000000000001010101010000000000000000000000
-00000000000000000010101010101000000000000000000000
-00000000000000000101010101010100000000000000000000
-00000000000000000010101010101010000000000000000000
-00000000000000000101010101010101000000000000000000
-00000000000000000010101010101010100000000000000000
-00000000000000000101010101010101000000000000000000
-00000000000000000010101010101010100000000000000000
-00000000000000000001010101010101010000000000000000
-00000000000000000000101010101010100000000000000000
-00000000000000000001010101010101010000000000000000
-00000000000000000000001010101010100000000000000000
-00000000000000000000010101010101010000000000000000
-00000000000000000000001010101010100000000000000000
-00000000000000000000010101010101010000000000000000
-00000000000000000000000010101010100000000000000000
-00000000000000000000000101010101000000000000000000
-00000000000000000000000000101000000000000000000000
-00000000000000000000000000010100000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-00000000000000000000000000000000000000000000000000
-
-UnityEngine.MonoBehaviour:print (object)
-MapGenerator:PrintMap () (at Assets/Scripts/Map/MapGenerator.cs:136)
-MapGenerator:UpdateMap () (at Assets/Scripts/Map/MapGenerator.cs:62)
-MapGenerator:Update () (at Assets/Scripts/Map/MapGenerator.cs:34)
-
- */
