@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoneySys : MonoBehaviour
@@ -69,6 +68,7 @@ public class MoneySys : MonoBehaviour
     public static bool BuyItem(int cost)
     {
         if (instance.baaCoins - cost >= 0)
+
         {
             instance.baaCoins -= cost;
             return true;
