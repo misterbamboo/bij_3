@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
@@ -56,6 +58,7 @@ public class MapGenerator : MonoBehaviour
     {
         UpdatePerlinMap();
         SetMapCells();
+        CleanFences();
         var mapGizmos = GetComponent<MapGizmos>();
         if (mapGizmos != null)
         {
@@ -111,6 +114,42 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void CleanFences()
+    {
+        for (int zCoord = 0; zCoord < mapSize; zCoord++)
+        {
+            for (int x = 0; x < mapSize * 2; x += 2)
+            {
+                int xCoord = x + (zCoord % 2);
+                var type = map.GetMapCellType(xCoord, zCoord);
+                if (type == MapCellTypes.Fence)
+                {
+                    if (FenceShouldBeCleanned(xCoord, zCoord))
+                    {
+                        map.SetMapCellType(new MapCellCoord(xCoord, zCoord), MapCellTypes.Empty);
+                    }
+                }
+            }
+        }
+    }
+
+    private bool FenceShouldBeCleanned(int x, int z)
+    {
+        return 
+            SurroundedByFenceOrEmpty(x - 2, z) &&
+            SurroundedByFenceOrEmpty(x + 2, z) &&
+            SurroundedByFenceOrEmpty(x - 1, z - 1) &&
+            SurroundedByFenceOrEmpty(x - 1, z + 1) &&
+            SurroundedByFenceOrEmpty(x + 1, z - 1) &&
+            SurroundedByFenceOrEmpty(x + 1, z + 1);
+    }
+
+    private bool SurroundedByFenceOrEmpty(int x, int z)
+    {
+        var type = map.GetMapCellType(x, z);
+        return type == MapCellTypes.Fence || type == MapCellTypes.Empty;
     }
 
     private bool HasEmptyCellArround(int x, int z)

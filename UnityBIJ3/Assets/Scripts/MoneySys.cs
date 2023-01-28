@@ -52,7 +52,7 @@ public class MoneySys : MonoBehaviour
 
         _instance = this;
 
-        AddMoney(PlayerPrefs.GetInt("MoneySave", 0));
+        AddMoneyToBank(PlayerPrefs.GetInt("MoneySave", 0));
 
         StartCoroutine("SaveMoneyToBank");
     }
