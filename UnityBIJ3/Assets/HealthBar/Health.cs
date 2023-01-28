@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-
     public event Action<float> HealthUpdate = delegate { };
     public event Action NoMoreHealth = delegate { };
 
