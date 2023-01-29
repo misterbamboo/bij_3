@@ -546,6 +546,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4718004318741218415, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
+      propertyPath: xScale
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718004318741218415, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
+      propertyPath: zScale
+      value: 9.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718004318741218415, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
+      propertyPath: xOffset
+      value: 12.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718004318741218415, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
+      propertyPath: yOffset
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718004318741218415, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
+      propertyPath: zOffset
+      value: 89.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718004318741218415, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
+      propertyPath: centerPosX
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718004318741218415, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
+      propertyPath: centerPosZ
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4718004318741218415, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
+      propertyPath: centerRadius
+      value: 21.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4718004318741218416, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
       propertyPath: m_Name
       value: Map

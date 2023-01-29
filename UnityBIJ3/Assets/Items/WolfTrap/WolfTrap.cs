@@ -3,39 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class WolfTrap : MonoBehaviour
 {
     [SerializeField]
-    GameObject projectile;
-    
+    float domage = 100.0f;
+
     [SerializeField]
-    float attackCooldownInSeconds = 1f;
+    float attackCooldownInSeconds = 10.0f;
 
     bool attackOnCooldown = false;
 
     List<GameObject> enemiesInRange = new List<GameObject>();
 
-    // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponentInChildren<DetectionZone>().EnterRange += AddInRange;
         gameObject.GetComponentInChildren<DetectionZone>().ExitRange += RemoveFromRange;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(attackOnCooldown)
             return;
         
-        if(enemiesInRange.Count > 0 && enemiesInRange[0] == null)
+        if(enemiesInRange.Count > 0)
         {
-            enemiesInRange.RemoveAt(0);
+            enemiesInRange = FilterEnemiesInRange();
         }
         
         if(enemiesInRange.Count > 0)
         {           
-            Attack(enemiesInRange[0]);
+            AttackZone();
             StartCoroutine(Cooldown());
         }
     }
@@ -52,10 +50,15 @@ public class Tower : MonoBehaviour
         enemiesInRange.Remove(enemyToRemove);
     }
 
-    void Attack(GameObject target)
+    void AttackZone()
     {
-        var newPojectile = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
-        newPojectile.Init(target);
+        enemiesInRange = FilterEnemiesInRange();
+
+        foreach(var enemy in enemiesInRange)
+        {
+            var health = enemy.GetComponent<Health>();
+            health.Damage(domage);
+        }
     }
 
     IEnumerator Cooldown()
@@ -63,5 +66,10 @@ public class Tower : MonoBehaviour
         attackOnCooldown = true;
         yield return new WaitForSeconds(attackCooldownInSeconds);
         attackOnCooldown = false;
+    }
+
+    List<GameObject> FilterEnemiesInRange()
+    {
+        return enemiesInRange.Where(e => e != null).ToList();
     }
 }
