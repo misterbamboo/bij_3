@@ -6,7 +6,7 @@ using UnityEngine;
 public class DetectionZone : MonoBehaviour
 {
     [TagSelector]
-    public string TagSelector = "";
+    public List<string> TagsSelector;
 
 	public event Action<GameObject> EnterRange = delegate { };
 
@@ -14,7 +14,7 @@ public class DetectionZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == TagSelector)
+        if (TagsSelector.Contains(other.gameObject.tag))
         {
             EnterRange(other.gameObject);
         }
@@ -22,7 +22,7 @@ public class DetectionZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == TagSelector)
+        if (TagsSelector.Contains(other.gameObject.tag))
         {
             ExitRange(other.gameObject);
         }
