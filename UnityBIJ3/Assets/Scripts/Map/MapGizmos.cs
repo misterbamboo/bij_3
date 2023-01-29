@@ -49,6 +49,9 @@ public class MapGizmos : MonoBehaviour
                     case MapCellTypes.Barn:
                         color = Color.red;
                         break;
+                    case MapCellTypes.Dirt:
+                        color = Color.gray;
+                        break;
                 }
                 DrawHex(zCoord, x, color);
             }

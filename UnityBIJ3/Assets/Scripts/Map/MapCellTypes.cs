@@ -5,5 +5,6 @@
     Fence,
     Field,
     Barn,
-    Turret
+    Turret,
+    Dirt
 }
