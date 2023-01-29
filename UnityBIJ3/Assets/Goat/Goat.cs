@@ -79,7 +79,6 @@ public class Goat : MonoBehaviour
     
     void BlockByGoat(GameObject goat)
     {
-        print("BlockByGoat " + goat.name + " is blocking the way");
         goatsBlocking.Add(goat);
     }
 
