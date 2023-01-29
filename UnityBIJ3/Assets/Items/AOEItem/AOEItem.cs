@@ -9,7 +9,7 @@ public class AOEItem : MonoBehaviour
     float attackSpeed = 1.0f;
 
     [SerializeField]
-    float damage = 5.0f;
+    float damage = 10.0f;
 
     [SerializeField]
     ParticleSystem particleSystem;

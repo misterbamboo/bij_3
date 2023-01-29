@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Barn
   - Enemy
+  - Fence
   layers:
   - Default
   - TransparentFX

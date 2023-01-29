@@ -69,6 +69,8 @@ public class MapGenerator : MonoBehaviour
         UpdatePerlinMap();
         SetMapCells();
         CleanFences();
+        SetPathway();
+
         var mapGizmos = GetComponent<MapGizmos>();
         if (mapGizmos != null)
         {
@@ -109,7 +111,7 @@ public class MapGenerator : MonoBehaviour
                 var currentBlurValue = blurValue;
                 blurValue = value;
                 value = (currentBlurValue + value) / 2;
-                perlinMap[xCoord, zCoord] = Mathf.Clamp((value * height) + yOffset, 0, float.MaxValue);
+                perlinMap[xCoord, zCoord] = (value * height) + yOffset;
             }
         }
     }
@@ -151,6 +153,19 @@ public class MapGenerator : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void SetPathway()
+    {
+        var coord = new MapCellCoord(centerPosX, centerPosZ);
+
+        while (coord.Row < mapSize)
+        {
+            var leftOrRight = ((int)perlinMap[coord.Col, coord.Row]) % 2 == 0;
+            coord = coord.Move(leftOrRight ? -1 : 1, 1);
+
+            map.SetMapCellType(coord, MapCellTypes.Dirt);
         }
     }
 

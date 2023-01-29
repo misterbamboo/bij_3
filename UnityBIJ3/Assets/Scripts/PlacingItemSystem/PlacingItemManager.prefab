@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5c8ee5efb54954ab81a5cf661f2648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretPrefab: {fileID: 4655076664286232125, guid: 37ff9a1cc70ab7540b6fa9ac1853ec1f, type: 3}
+  hexSize: 3
+  fencePrefab: {fileID: 8698011862794784026, guid: 4c153abea72a1704b91f70c453c98d6f, type: 3}
+  trapPrefab: {fileID: 6834143987391954055, guid: 7068aebd8b51b76468bb7ef708b73e38, type: 3}
+  beeHomePrefab: {fileID: 4526608585822910275, guid: e7571e8948654774c92949746b56bdb9, type: 3}
+  campFirePrefab: {fileID: 2370194368274173902, guid: da4c43b6d0e764046804fae38c02fa2c, type: 3}
 --- !u!65 &6044261447397250615
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56,5 +60,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1000, y: 2, z: 1000}
+  m_Size: {x: 1000, y: 1, z: 1000}
   m_Center: {x: 0, y: 0, z: 0}

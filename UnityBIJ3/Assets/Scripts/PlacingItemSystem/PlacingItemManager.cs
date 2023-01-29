@@ -5,7 +5,11 @@ using UnityEngine;
 public class PlacingItemManager : MonoBehaviour
 {
     [SerializeField] float hexSize = 3;
-    [SerializeField] GameObject turretPrefab;
+    [SerializeField] GameObject fencePrefab;
+    [SerializeField] GameObject trapPrefab;
+    [SerializeField] GameObject beeHomePrefab;
+    [SerializeField] GameObject campFirePrefab;
+
     private int placeItemPlaneLayerMask;
     private float hexWidth;
     private float hexHeight;
@@ -16,6 +20,7 @@ public class PlacingItemManager : MonoBehaviour
 
     private string ItemToPlace { get; set; }
     private GameObject GameObjectToPlace { get; set; }
+    public MapCellCoord LastHighlighCoord { get; private set; }
 
     private void Start()
     {
@@ -32,8 +37,17 @@ public class PlacingItemManager : MonoBehaviour
         ItemToPlace = evnt.ItemKey;
         switch (ItemToPlace)
         {
-            case ItemKeys.Turret:
-                GameObjectToPlace = Instantiate(turretPrefab);
+            case ItemKeys.Fence:
+                GameObjectToPlace = Instantiate(fencePrefab);
+                break;
+            case ItemKeys.Trap:
+                GameObjectToPlace = Instantiate(trapPrefab);
+                break;
+            case ItemKeys.Bees:
+                GameObjectToPlace = Instantiate(beeHomePrefab);
+                break;
+            case ItemKeys.CampFire:
+                GameObjectToPlace = Instantiate(campFirePrefab);
                 break;
             default:
                 break;
@@ -48,6 +62,7 @@ public class PlacingItemManager : MonoBehaviour
         if (!string.IsNullOrEmpty(ItemToPlace))
         {
             MoveItemToPointerPosition();
+            HighlightHexCell();
             CheckIfCanPlace();
         }
     }
@@ -107,42 +122,62 @@ public class PlacingItemManager : MonoBehaviour
         }
     }
 
+    private void HighlightHexCell()
+    {
+        var map = MapGenerator.Instance.GetMap();
+        MapCellCoord coord = GetPointedCoord();
+
+        if (!LastHighlighCoord.Equals(LastHighlighCoord, coord))
+        {
+            LastHighlighCoord = coord;
+
+            var isBlocked = map.IsBlocked(coord);
+            GameEvent.RaiseEvent(new HexCellHoverEvent(coord, isBlocked));
+        }
+    }
+
     private void CheckIfCanPlace()
     {
         if (Input.GetMouseButton(0))
         {
             var map = MapGenerator.Instance.GetMap();
 
-            int xCoord, zCoord;
-            if (closestAnchor.ZIndex % 2 == 0)
-            {
-                zCoord = closestAnchor.ZIndex + ((closestAnchor.ZIndex % 2) * -1);
-                xCoord = (closestAnchor.XIndex + (closestAnchor.ZIndex % 2)) * 2;
-            }
-            else
-            {
-                zCoord = closestAnchor.ZIndex;
-                xCoord = (closestAnchor.XIndex * 2) + 1;
-            }
-
-            var type = map.GetMapCellType(xCoord, zCoord);
+            MapCellCoord coord = GetPointedCoord();
+            var type = map.GetMapCellType(coord);
 
             // Debuging indexes => to => hexCoord
             // print($"{closestAnchor.XIndex},{closestAnchor.ZIndex}   ===>   {xCoord},{zCoord}   ({type})");
 
             if (type == MapCellTypes.Field || type == MapCellTypes.Empty)
             {
-                PlaceItem(xCoord, zCoord, map);
+                PlaceItem(coord, map);
             }
         }
     }
 
-    private void PlaceItem(int xCoord, int zCoord, Map map)
+    private MapCellCoord GetPointedCoord()
+    {
+        int zCoord, xCoord;
+        if (closestAnchor.ZIndex % 2 == 0)
+        {
+            zCoord = closestAnchor.ZIndex + ((closestAnchor.ZIndex % 2) * -1);
+            xCoord = (closestAnchor.XIndex + (closestAnchor.ZIndex % 2)) * 2;
+        }
+        else
+        {
+            zCoord = closestAnchor.ZIndex;
+            xCoord = (closestAnchor.XIndex * 2) + 1;
+        }
+        return new MapCellCoord(xCoord, zCoord);
+    }
+
+    private void PlaceItem(MapCellCoord coord, Map map)
     {
         ItemToPlace = null;
         GameObjectToPlace = null;
         closestAnchor = new PlaceItemAnchor();
-        map.SetMapCellType(new MapCellCoord(xCoord, zCoord), MapCellTypes.Turret);
+        map.SetMapCellType(coord, MapCellTypes.Turret);
+        GameEvent.RaiseEvent(new ItemPlacedEvent());
     }
 }
 

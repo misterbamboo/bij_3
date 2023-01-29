@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Coroutine augment currenTimeInSeconds at each seconds
     IEnumerator CalculTimeInSeconds()
     {
         while (true)

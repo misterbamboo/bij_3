@@ -4,27 +4,31 @@ public class InventoryManager : MonoBehaviour
 {
     [SerializeField] public GameObject menuInventory;
 
-    // Start is called before the first frame update
-    void Start()
+    public void BuyFence(int price)
     {
-        menuInventory.SetActive(false);
+        BuyItem(ItemKeys.Fence, price);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void BuyCampFire(int price)
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            menuInventory.SetActive(!menuInventory.activeSelf);
-        }
+        BuyItem(ItemKeys.CampFire, price);
     }
 
-    public void BuyTurret()
+    public void BuyTrap(int price)
     {
-        if (MoneySys.BuyItem(10))
+        BuyItem(ItemKeys.Trap, price);
+    }
+
+    public void BuyBees(int price)
+    {
+        BuyItem(ItemKeys.Bees, price);
+    }
+
+    private void BuyItem(string itemKey, int price)
+    {
+        if (MoneySys.BuyItem(price))
         {
-            GameEvent.RaiseEvent(new ItemBoughtEvent(ItemKeys.Turret));
-            menuInventory.SetActive(false);
+            GameEvent.RaiseEvent(new ItemBoughtEvent(itemKey));
         }
         else
         {
