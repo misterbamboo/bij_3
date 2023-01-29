@@ -561,6 +561,22 @@ PrefabInstance:
       propertyPath: waves.Array.data[4].spawner
       value: 
       objectReference: {fileID: 249454026}
+    - target: {fileID: 4330931029394981257, guid: 6da83f9562a532f4ab52089e2e18ff28, type: 3}
+      propertyPath: waves.Array.data[1].timeInSeconds
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330931029394981257, guid: 6da83f9562a532f4ab52089e2e18ff28, type: 3}
+      propertyPath: waves.Array.data[2].timeInSeconds
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330931029394981257, guid: 6da83f9562a532f4ab52089e2e18ff28, type: 3}
+      propertyPath: waves.Array.data[3].timeInSeconds
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4330931029394981257, guid: 6da83f9562a532f4ab52089e2e18ff28, type: 3}
+      propertyPath: waves.Array.data[4].timeInSeconds
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 4430410738122696271, guid: 6da83f9562a532f4ab52089e2e18ff28, type: 3}
       propertyPath: m_Name
       value: WaveManager

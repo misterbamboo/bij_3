@@ -106,8 +106,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beeHive: {fileID: 0}
   attackSpeed: 0.05
-  Damage: 2
+  Damage: 0.5
   speed: 12
+  isActive: 0
 --- !u!1001 &8138047437458824107
 PrefabInstance:
   m_ObjectHideFlags: 0

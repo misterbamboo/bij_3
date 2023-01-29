@@ -177,8 +177,8 @@ RectTransform:
   m_Children:
   - {fileID: 3987817432795254131}
   - {fileID: 4753264040521758983}
-  - {fileID: 4956281561683437080}
   - {fileID: 4881681967960092757}
+  - {fileID: 4956281561683437080}
   m_Father: {fileID: 6933357048961247928}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -645,6 +645,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemDisplay_Fence
       objectReference: {fileID: 0}
+    - target: {fileID: 2584226048357183245, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2801929142191534476, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
       propertyPath: m_text
       value: 
@@ -891,192 +895,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
       propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 450
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1283491064451601056, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 8a9ebcd80477ab64592637f3f7eafd54, type: 3}
-    - target: {fileID: 2189151613861453385, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 47e69cc04b68a01458b8bd6344cde188, type: 3}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: price
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: bonusImage
-      value: 
-      objectReference: {fileID: 21300000, guid: 47e69cc04b68a01458b8bd6344cde188, type: 3}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: malusImage
-      value: 
-      objectReference: {fileID: 21300000, guid: 5eb3c23162ae59c4c99b90ae9d422dfc, type: 3}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: sourceImage
-      value: 
-      objectReference: {fileID: 21300000, guid: 8a9ebcd80477ab64592637f3f7eafd54, type: 3}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: popoverBonusText
-      value: Brule les moutons
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: popoverMalusText
-      value: Augmente la vitesse des moutons
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6933357047777402545}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuyCampFire
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InventoryManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2584226048357183245, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_Name
-      value: ItemDisplay_CampFire
-      objectReference: {fileID: 0}
-    - target: {fileID: 2801929142191534476, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_text
-      value: Augmente la vitesse des moutons
-      objectReference: {fileID: 0}
-    - target: {fileID: 5642856744337457453, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_text
-      value: Brule les moutons
-      objectReference: {fileID: 0}
-    - target: {fileID: 8174753337876803267, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8233484925453064714, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_text
-      value: '     100 $'
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
---- !u!224 &4881681967960092757 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-  m_PrefabInstance: {fileID: 5389452512996032335}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5601394578708211970
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 6933357047384960627}
-    m_Modifications:
-    - target: {fileID: 619332196817865624, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 9c85a0dac44e4a845ada0cb76de63dac, type: 3}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
-      propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
@@ -1154,6 +972,192 @@ PrefabInstance:
     - target: {fileID: 1283491064451601056, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
       propertyPath: m_Sprite
       value: 
+      objectReference: {fileID: 21300000, guid: 8a9ebcd80477ab64592637f3f7eafd54, type: 3}
+    - target: {fileID: 2189151613861453385, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 47e69cc04b68a01458b8bd6344cde188, type: 3}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: price
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: bonusImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 47e69cc04b68a01458b8bd6344cde188, type: 3}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: malusImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 5eb3c23162ae59c4c99b90ae9d422dfc, type: 3}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: sourceImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 8a9ebcd80477ab64592637f3f7eafd54, type: 3}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: popoverBonusText
+      value: Brule les moutons
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: popoverMalusText
+      value: Augmente la vitesse des moutons
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6933357047777402545}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyCampFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InventoryManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2584226048357183245, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_Name
+      value: ItemDisplay_CampFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801929142191534476, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_text
+      value: Augmente la vitesse des moutons
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642856744337457453, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_text
+      value: Brule les moutons
+      objectReference: {fileID: 0}
+    - target: {fileID: 8174753337876803267, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233484925453064714, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_text
+      value: '     50 $'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+--- !u!224 &4881681967960092757 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+  m_PrefabInstance: {fileID: 5389452512996032335}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5601394578708211970
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6933357047384960627}
+    m_Modifications:
+    - target: {fileID: 619332196817865624, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9c85a0dac44e4a845ada0cb76de63dac, type: 3}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 681197357643468570, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1283491064451601056, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 21300000, guid: de218c69029674b499c4bffa9fed02ca, type: 3}
     - target: {fileID: 2189151613861453385, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
       propertyPath: m_Sprite
@@ -1161,7 +1165,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: e0ead43271cf0fd4c849f87c47654de8, type: 3}
     - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
       propertyPath: price
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
       propertyPath: bonusImage
@@ -1209,7 +1213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
       propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2258318560332113602, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
       propertyPath: onBuyItem.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1233,7 +1237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8233484925453064714, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}
       propertyPath: m_text
-      value: '     50 $'
+      value: '     100 $'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f714f10ac6c9a2468f809a9134e0a49, type: 3}

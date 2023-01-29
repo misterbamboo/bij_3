@@ -52,7 +52,7 @@ public class MoneySys : MonoBehaviour
         _instance = this;
 
         // TODO: REMOVE ? Add another way ?
-        PlayerPrefs.SetInt("MoneySave", 1000);
+        PlayerPrefs.SetInt("MoneySave", 50);
 
         AddMoneyToBank(PlayerPrefs.GetInt("MoneySave", 0));
 
