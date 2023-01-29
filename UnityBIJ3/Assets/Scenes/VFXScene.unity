@@ -1624,7 +1624,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -6488,7 +6488,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -14701,6 +14701,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1894462145861661536, guid: 09573cab6bafff14c8c9ec7d0c13c02c, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1894462145861661536, guid: 09573cab6bafff14c8c9ec7d0c13c02c, type: 3}
       propertyPath: SubModule.subEmitters.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -14817,6 +14821,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2562675151196334635, guid: 6109d7ff48589b448bafd063ec368d2d, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6109d7ff48589b448bafd063ec368d2d, type: 3}
 --- !u!1001 &3996760582668070358
@@ -14896,7 +14904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3996760582192727703, guid: e67762bee3a2dab4186e33fcff307a5b, type: 3}
       propertyPath: looping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3996760582192727785, guid: e67762bee3a2dab4186e33fcff307a5b, type: 3}
       propertyPath: m_Name
@@ -15010,6 +15018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CartoonFire
       objectReference: {fileID: 0}
+    - target: {fileID: 5683712560723667842, guid: a7e546872dbba8847b58412f6326fc32, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5683712560723667853, guid: a7e546872dbba8847b58412f6326fc32, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -15103,6 +15115,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8882051382018634224, guid: e37195dc74d10754c870b426295b1a65, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8882051382018634225, guid: e37195dc74d10754c870b426295b1a65, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -15202,6 +15218,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9216589074990562328, guid: bec0e785e5abf1944b086e0b054d71cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216589074990562331, guid: bec0e785e5abf1944b086e0b054d71cc, type: 3}
+      propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9216589074990562331, guid: bec0e785e5abf1944b086e0b054d71cc, type: 3}
