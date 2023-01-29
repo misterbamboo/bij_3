@@ -1,24 +1,19 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class Wave
 {
-    public float timeInSeconds;
-    
-    public Spawner spawner;
+    [SerializeField] public float timeInSeconds;
 
-    public List<GameObject> prefabCharacters = new List<GameObject>();
+    [SerializeField] public Spawner spawner;
 
-    public void Start()
-    {
-        
-    }
+    [SerializeField] public GameObject prefab;
+
+    [SerializeField] public int spawnNumber;
 
     public void StartWave()
     {
-        spawner.GetComponent<Spawner>().StartSpawn(prefabCharacters);
+        spawner.GetComponent<Spawner>().StartSpawn(prefab, spawnNumber);
     }
 }

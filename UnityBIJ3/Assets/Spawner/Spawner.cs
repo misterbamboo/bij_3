@@ -29,14 +29,14 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public void StartSpawn(IEnumerable<GameObject> prefabs)
+    public void StartSpawn(GameObject prefabs, int count)
     {
-        StartCoroutine(SpawnAll(prefabs));
+        StartCoroutine(SpawnAll(prefabs, count));
     }
 
-    IEnumerator SpawnAll(IEnumerable<GameObject> prefabs)
+    IEnumerator SpawnAll(GameObject prefab, int count)
     {
-        foreach (GameObject prefab in prefabs)
+        for (int i = 0; i < count; i++)
         {
             yield return new WaitForSeconds(SideEffectManager.Instance.GetSpawnInSecs());
             var instance = Instantiate(prefab, transform.position, transform.rotation);

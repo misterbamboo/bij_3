@@ -51,6 +51,8 @@ public class Goat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CleanDestoyedBlocking();
+
         if (target != null)
         {
             animator.SetBool("walking", false);
@@ -59,7 +61,7 @@ public class Goat : MonoBehaviour
         }
         else if (goatsBlocking.Count == 0)
         {
-            if(animator.GetBool("walking") == false)
+            if (animator.GetBool("walking") == false)
             {
                 animator.SetBool("walking", true);
                 grassParticle.Play();
@@ -70,6 +72,23 @@ public class Goat : MonoBehaviour
         {
             grassParticle.Stop();
             animator.SetBool("walking", false);
+        }
+    }
+
+    private void CleanDestoyedBlocking()
+    {
+        List<GameObject> toRemove = new List<GameObject>();
+        foreach (var goatBlocking in goatsBlocking)
+        {
+            if (goatBlocking == null)
+            {
+                toRemove.Add(goatBlocking);
+            }
+        }
+
+        foreach (var remove in toRemove)
+        {
+            goatsBlocking.Remove(remove);
         }
     }
 

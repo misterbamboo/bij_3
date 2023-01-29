@@ -616,7 +616,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Audrey - VFX & Textures
+  m_text: Audrey - VFX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c06ec24689ad81441b428ccb8e4bb89f, type: 2}
   m_sharedMaterial: {fileID: 7874786349376725203, guid: c06ec24689ad81441b428ccb8e4bb89f, type: 2}
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Elise - Mod\xE9lisation 3D"
+  m_text: "Elise - Mod\xE9lisation 3D & Texturing"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c06ec24689ad81441b428ccb8e4bb89f, type: 2}
   m_sharedMaterial: {fileID: 7874786349376725203, guid: c06ec24689ad81441b428ccb8e4bb89f, type: 2}
@@ -1195,7 +1195,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "L\xE9onard - Mod\xE9lisation 3D"
+  m_text: "L\xE9onard - Charamodeling"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c06ec24689ad81441b428ccb8e4bb89f, type: 2}
   m_sharedMaterial: {fileID: 7874786349376725203, guid: c06ec24689ad81441b428ccb8e4bb89f, type: 2}

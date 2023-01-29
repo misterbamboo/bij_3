@@ -5014,10 +5014,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d0f7f7e1ebce0040bbbc4937865fefb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  domage: 10
+  domage: 5
   speed: 10
   attackCooldownInSeconds: 3
-  moneyValue: 50
+  moneyValue: 25
   animator: {fileID: 8905318354763722170}
   bloodParticle: {fileID: 2618877266352524963}
   grassParticle: {fileID: 7228777627549401435}

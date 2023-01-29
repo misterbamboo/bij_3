@@ -32,11 +32,11 @@ public class Bee : MonoBehaviour
 
     void Update()
     {
-        if(target != null)
+        if (target != null)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
         }
-        else 
+        else
         {
             transform.position = Vector3.MoveTowards(transform.position, beeHive.transform.position, speed * Time.deltaTime);
         }
@@ -56,9 +56,16 @@ public class Bee : MonoBehaviour
     {
         enemiesInRange = enemiesInRange.Where(e => enemiesInBeeHiveRange.Any(b => b.GetInstanceID() == e.GetInstanceID())).ToList();
 
-        if(!enemiesInRange.Any(e => e.GetInstanceID() != target.GetInstanceID()))
+        if (target == null)
         {
             target = null;
+        }
+        else
+        {
+            if (!enemiesInRange.Any(e => e.GetInstanceID() != target.GetInstanceID()))
+            {
+                target = null;
+            }
         }
     }
 
@@ -71,19 +78,19 @@ public class Bee : MonoBehaviour
     {
         var instanceId = enemy.GetInstanceID();
         var enemyToRemove = enemiesInRange.FirstOrDefault(e => e.GetInstanceID() == instanceId);
-        if(enemyToRemove != null)
+        if (enemyToRemove != null)
         {
             enemiesInRange.Remove(enemyToRemove);
         }
     }
 
     IEnumerator AttackZone()
-    {           
-        if(isActive)
+    {
+        if (isActive)
         {
             enemiesInRange = FilterEnemiesInRange();
 
-            foreach(var enemy in enemiesInRange)
+            foreach (var enemy in enemiesInRange)
             {
                 var health = enemy.GetComponent<Health>();
                 health.Damage(Damage);
@@ -95,7 +102,7 @@ public class Bee : MonoBehaviour
     }
 
     List<GameObject> FilterEnemiesInRange()
-    {        
+    {
         return enemiesInRange.Where(e => e != null).ToList();
     }
 }
