@@ -15,7 +15,6 @@ public class Tower : MonoBehaviour
 
     List<GameObject> enemiesInRange = new List<GameObject>();
 
-    // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponentInChildren<DetectionZone>().EnterRange += AddInRange;

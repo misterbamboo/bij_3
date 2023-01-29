@@ -6,10 +6,13 @@ using UnityEngine;
 public class AOEItem : MonoBehaviour
 {
     [SerializeField]
-    float pulseTime = 1.0f;
+    float attackSpeed = 1.0f;
 
     [SerializeField]
-    float domage = 5.0f;
+    float damage = 5.0f;
+
+    [SerializeField]
+    ParticleSystem particleSystem;
 
     List<GameObject> enemiesInRange = new List<GameObject>();
 
@@ -23,15 +26,16 @@ public class AOEItem : MonoBehaviour
 
     IEnumerator AttackZone()
     {           
+        particleSystem.Play();
         enemiesInRange = FilterEnemiesInRange();
 
         foreach(var enemy in enemiesInRange)
         {
             var health = enemy.GetComponent<Health>();
-            health.Damage(domage);
+            health.Damage(damage);
         }
 
-        yield return new WaitForSeconds(pulseTime);
+        yield return new WaitForSeconds(attackSpeed);
         StartCoroutine(AttackZone());
     }
 
