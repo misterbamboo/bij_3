@@ -15,6 +15,8 @@ public class WolfTrap : MonoBehaviour
 
     List<GameObject> enemiesInRange = new List<GameObject>();
 
+    public bool isActive = false;
+
     void Start()
     {
         gameObject.GetComponentInChildren<DetectionZone>().EnterRange += AddInRange;
@@ -52,12 +54,14 @@ public class WolfTrap : MonoBehaviour
 
     void AttackZone()
     {
-        enemiesInRange = FilterEnemiesInRange();
-        print("Attack : " + enemiesInRange.Count + " enemies");
-        foreach(var enemy in enemiesInRange)
+        if(isActive)
         {
-            var health = enemy.GetComponent<Health>();
-            health.Damage(domage);
+            enemiesInRange = FilterEnemiesInRange();
+            foreach(var enemy in enemiesInRange)
+            {
+                var health = enemy.GetComponent<Health>();
+                health.Damage(domage);
+            }
         }
     }
 

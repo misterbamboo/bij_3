@@ -106,6 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   domage: 50
   attackCooldownInSeconds: 5
+  isActive: 0
 --- !u!1001 &4376485332281365913
 PrefabInstance:
   m_ObjectHideFlags: 0
