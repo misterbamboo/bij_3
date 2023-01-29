@@ -15,6 +15,9 @@ public class Goat : MonoBehaviour
     [SerializeField]
     float attackCooldownInSeconds = 1f;
 
+    [SerializeField]
+    int moneyValue = 50;
+
     GameObject target = null;
 
     bool attackOnCooldown = false;
@@ -110,6 +113,7 @@ public class Goat : MonoBehaviour
 
     void Die()
     {
+        MoneySys.AddMoneyToBank(moneyValue);
         Destroy(gameObject);
     }
 

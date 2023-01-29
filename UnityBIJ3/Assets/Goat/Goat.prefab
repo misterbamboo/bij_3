@@ -250,8 +250,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   domage: 10
-  speed: 5
-  attackCooldownInSeconds: 1
+  speed: 10
+  attackCooldownInSeconds: 3
+  moneyValue: 50
 --- !u!114 &4446209775262030894
 MonoBehaviour:
   m_ObjectHideFlags: 0
