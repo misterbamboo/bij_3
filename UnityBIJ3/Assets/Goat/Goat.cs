@@ -17,6 +17,9 @@ public class Goat : MonoBehaviour
     [SerializeField]
     int moneyValue = 50;
 
+    [SerializeField]
+    Animator animator;
+
     GameObject target = null;
 
     bool attackOnCooldown = false;
@@ -41,11 +44,21 @@ public class Goat : MonoBehaviour
     {
         if(target != null)
         {
+            animator.SetBool("walking", false);
             Attack();
         }
         else if(goatsBlocking.Count == 0)
         {
+            if(animator.GetBool("walking") == false)
+            {
+                print("MARCHEEEEE");
+                animator.SetBool("walking", true);
+            }
             MoveForward();
+        }
+        else
+        {
+            animator.SetBool("walking", false);
         }
     }
 
