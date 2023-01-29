@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.65080994, g: 0.666729, b: 0.7075472, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.05
@@ -781,7 +781,7 @@ Transform:
   - {fileID: 45597940}
   - {fileID: 1069972799}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &349005568
 PrefabInstance:
@@ -6470,7 +6470,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906836306}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 3
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -6545,7 +6545,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2.64
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -6714,7 +6714,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 3.52
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -7460,7 +7460,7 @@ ParticleSystem:
       repeatInterval: 0.01
       probability: 1
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -7472,21 +7472,66 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0
-          outSlope: 1
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 0.13843675
+          value: 0.9881762
+          inSlope: 0.1187948
+          outSlope: 0.1187948
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.32936022
+          value: 0.8604147
+          inSlope: -0.06301079
+          outSlope: -0.06301079
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.50418216
+        - serializedVersion: 3
+          time: 0.5093543
+          value: 0.97296864
+          inSlope: 0.3047685
+          outSlope: 0.3047685
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.7201212
+          value: 0.8159767
+          inSlope: -0.36305276
+          outSlope: -0.36305276
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.446381
+        - serializedVersion: 3
+          time: 0.91416234
+          value: 0.8491564
+          inSlope: -2.6866617
+          outSlope: -2.6866617
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
           time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
+          value: 0
+          inSlope: -1.9319323
+          outSlope: -1.9319323
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
+          inWeight: 0.18639776
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
@@ -11235,7 +11280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906836306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.03, y: 3.644628, z: -14}
+  m_LocalPosition: {x: -9.03, y: 4.18, z: -14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -14712,7 +14757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1894462145861661537, guid: 09573cab6bafff14c8c9ec7d0c13c02c, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1894462145861661537, guid: 09573cab6bafff14c8c9ec7d0c13c02c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14773,7 +14818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2562675151196334634, guid: 6109d7ff48589b448bafd063ec368d2d, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2562675151196334634, guid: 6109d7ff48589b448bafd063ec368d2d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14967,7 +15012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5683712560723667853, guid: a7e546872dbba8847b58412f6326fc32, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5683712560723667853, guid: a7e546872dbba8847b58412f6326fc32, type: 3}
       propertyPath: m_LocalPosition.x
