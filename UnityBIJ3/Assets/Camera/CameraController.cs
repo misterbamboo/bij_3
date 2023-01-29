@@ -31,10 +31,16 @@ public class CameraController : MonoBehaviour
 
     private void GetMouseInfo(float rightBound, float topBound, float leftBound, float bottomBound)
     {
-        horizontal += Input.mousePosition.x < leftBound ? -1 : 0;
-        horizontal += Input.mousePosition.x > rightBound ? 1 : 0;
-        vertical += Input.mousePosition.y < bottomBound ? -1 : 0;
-        vertical += Input.mousePosition.y > topBound ? 1 : 0;
+        float screenWidth = GetScreenWidth();
+        float screenHeight = GetScreenHeight();
+        var screen = new Rect(Vector2.zero, new Vector2(screenWidth, screenHeight));
+        if (screen.Contains(Input.mousePosition))
+        {
+            horizontal += Input.mousePosition.x < leftBound ? -1 : 0;
+            horizontal += Input.mousePosition.x > rightBound ? 1 : 0;
+            vertical += Input.mousePosition.y < bottomBound ? -1 : 0;
+            vertical += Input.mousePosition.y > topBound ? 1 : 0;
+        }
     }
 
     private void GetKeyboardInfo()
