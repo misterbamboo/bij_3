@@ -31,15 +31,15 @@ public class MapDrawer : MonoBehaviour
                 var xCoord = (x * 2) + (zCoord % 2);
                 var type = Map.GetMapCellType(xCoord, zCoord);
 
-                DrawHexPrefab(zCoord, x, type);
+                DrawHexPrefab(zCoord, xCoord, x, type);
             }
         }
     }
 
-    private void DrawHexPrefab(int z, int x, MapCellTypes type)
+    private void DrawHexPrefab(int zCoord, int xCoord, int x, MapCellTypes type)
     {
-        var xOff = (z % 2) * (hexWidth / 2f);
-        var pos = new Vector3(x * hexWidth + xOff, 0, z * 3f / 4f * hexHeight);
+        var xOff = (zCoord % 2) * (hexWidth / 2f);
+        var pos = new Vector3(x * hexWidth + xOff, 0, zCoord * 3f / 4f * hexHeight);
 
         GameObject prefab;
         switch (type)
@@ -65,6 +65,8 @@ public class MapDrawer : MonoBehaviour
         if (prefab == null) return;
 
         var hex = Instantiate(prefab, pos, Quaternion.identity);
+        var hexCellScript = hex.AddComponent<HexCellScript>();
+        hexCellScript.SetData(xCoord, zCoord, pos);
     }
 
     private GameObject GetRandomPrefab(GameObject[] prefabs)

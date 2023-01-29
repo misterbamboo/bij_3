@@ -45,16 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d0938a30ca94a41b8c61c8ee4d32f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapSize: 50
+  mapSize: 30
   xScale: 6
   zScale: 9
   xOffset: 0
   zOffset: 84.29
   yOffset: -5
   height: 5
-  centerPosX: 51
-  centerPosZ: 23
-  centerRadius: 21.25
+  centerPosX: 25
+  centerPosZ: 17
+  centerRadius: 16.85
   centerMultiplier: 11
 --- !u!114 &4718004318741218413
 MonoBehaviour:

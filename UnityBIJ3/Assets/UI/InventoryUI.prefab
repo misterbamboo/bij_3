@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 6933357047877198199}
   - component: {fileID: 6933357047877198196}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BuyTurretButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -458,7 +458,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6933357047877198199}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6933357047777402545}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: BuyTurret
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6933357048008653751
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +628,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Buy Turret (10$)
 --- !u!1 &6933357048961247929
 GameObject:
   m_ObjectHideFlags: 0
