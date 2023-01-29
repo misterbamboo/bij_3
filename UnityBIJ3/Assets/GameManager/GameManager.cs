@@ -5,15 +5,28 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	public event Action<int> OnSecondElapse = delegate { };
+    public event Action<int> OnSecondElapse = delegate { };
 
     int currentTimeInSeconds = 0;
+
+    bool barnFound = false;
 
     void Start()
     {
         StartCoroutine(CalculTimeInSeconds());
-        var barn = GameObject.FindGameObjectWithTag("Barn");
-        barn.GetComponentInChildren<Health>().NoMoreHealth += GameOver;
+    }
+
+    void Update()
+    {
+        if (!barnFound)
+        {
+            var barn = GameObject.FindGameObjectWithTag("Barn");
+            if (barn != null)
+            {
+                barn.GetComponentInChildren<Health>().NoMoreHealth += GameOver;
+                barnFound = true;
+            }
+        }
     }
 
     // Coroutine augment currenTimeInSeconds at each seconds
@@ -29,6 +42,6 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("HomeScreen", UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 }

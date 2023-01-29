@@ -128,7 +128,7 @@ public class PlacingItemManager : MonoBehaviour
             var type = map.GetMapCellType(xCoord, zCoord);
 
             // Debuging indexes => to => hexCoord
-            print($"{closestAnchor.XIndex},{closestAnchor.ZIndex}   ===>   {xCoord},{zCoord}   ({type})");
+            // print($"{closestAnchor.XIndex},{closestAnchor.ZIndex}   ===>   {xCoord},{zCoord}   ({type})");
 
             if (type == MapCellTypes.Field || type == MapCellTypes.Empty)
             {
