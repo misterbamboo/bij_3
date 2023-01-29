@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
+    public static MapGenerator Instance { get; private set; }
+
     [SerializeField] int mapSize = 50;
     [SerializeField] float xScale = 1;
     [SerializeField] float zScale = 1;
@@ -22,6 +24,11 @@ public class MapGenerator : MonoBehaviour
 
     string generationKey = string.Empty;
     private bool isGizmos;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void OnDrawGizmos()
     {
@@ -181,5 +188,10 @@ public class MapGenerator : MonoBehaviour
         if (x >= perlinMap.GetLength(0) || z >= perlinMap.GetLength(1)) return true;
 
         return perlinMap[x, z] <= 0;
+    }
+
+    public Map GetMap()
+    {
+        return map;
     }
 }

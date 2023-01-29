@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class Map
 {
@@ -16,7 +18,7 @@ public class Map
 
     public void SetMapCellType(MapCellCoord coord, MapCellTypes type)
     {
-        ValidateCoord(coord);
+        if (!IsValidCoord(coord)) return;
 
         var cell = GetCellAt(coord);
         cell.Type = type;
@@ -26,7 +28,7 @@ public class Map
     public MapCellTypes GetMapCellType(int xCoord, int zCoord)
     {
         var coord = new MapCellCoord(xCoord, zCoord);
-        ValidateCoord(coord);
+        if (!IsValidCoord(coord)) return MapCellTypes.None;
 
         var mapCell = GetCellAt(coord);
         return mapCell.Type;
@@ -41,17 +43,19 @@ public class Map
         return mapCells[coord];
     }
 
-    private void ValidateCoord(MapCellCoord coord)
+    private bool IsValidCoord(MapCellCoord coord)
     {
         if (coord.Col < 0 || coord.Row < 0)
         {
-            throw new Exception("Coordinates are out of bound");
+            return false;
         }
 
         // Row is offset of 1 for each (odd row number)
         if (coord.Col > mapSize * 2 || coord.Row > mapSize * 2 + 1)
         {
-            throw new Exception("Coordinates are out of bound");
+            return false;
         }
+
+        return true;
     }
 }
