@@ -3,18 +3,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private Camera mainCamera;
     [SerializeField] private float scroolSpeed = 50;
     [SerializeField] private float padding = 50;
 
     private int horizontal;
     private int vertical;
-
-    public Camera Cam { get; private set; }
-
-    void Start()
-    {
-        Cam = transform.GetComponent<Camera>();
-    }
 
     void Update()
     {
@@ -71,7 +65,7 @@ public class CameraController : MonoBehaviour
     {
         if (horizontal != 0 || vertical != 0)
         {
-            Cam.transform.position += new Vector3(-horizontal, 0, -vertical) * scroolSpeed * Time.deltaTime;
+            mainCamera.transform.position += new Vector3(-horizontal, 0, -vertical) * scroolSpeed * Time.deltaTime;
         }
     }
 }

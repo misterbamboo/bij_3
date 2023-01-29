@@ -12,13 +12,21 @@ public class Spawner : MonoBehaviour
 
     List<Vector3> allPositionInCircleArroundBarn = new List<Vector3>();
 
-    
+    bool barnFound = false;
 
-    void Start()
+    private void Update()
     {
-        var barnPosition = GameObject.FindGameObjectWithTag("Barn").transform.position;
-        CalculateCirclePositions(barnPosition, circleRadius, circleRadius / 2);      
-        StartCoroutine(MoveSpawner(barnPosition));  
+        if (!barnFound)
+        {
+            var barn = GameObject.FindGameObjectWithTag("Barn");
+            if (barn != null)
+            {
+                var barnPosition = barn.transform.position;
+                CalculateCirclePositions(barnPosition, circleRadius, circleRadius / 2);
+                StartCoroutine(MoveSpawner(barnPosition));
+                barnFound = true;
+            }
+        }
     }
 
     public void StartSpawn(IEnumerable<GameObject> prefabs)
@@ -30,13 +38,19 @@ public class Spawner : MonoBehaviour
     {
         foreach (GameObject prefab in prefabs)
         {
-            yield return new WaitForSeconds(changePositionInSeconds);
-            Instantiate(prefab, transform.position, transform.rotation);
-        }        
+            yield return new WaitForSeconds(SideEffectManager.Instance.GetSpawnInSecs());
+            var instance = Instantiate(prefab, transform.position, transform.rotation);
+
+            var goat = instance.GetComponent<Goat>();
+            if (goat != null)
+            {
+                goat.SetSpeed(SideEffectManager.Instance.GetSheepSpeed());
+            }
+        }
     }
 
     void CalculateCirclePositions(Vector3 center, float radius, int count)
-    {    
+    {
         float angle = 360f / count;
 
         for (int i = 0; i < count; i++)
@@ -62,7 +76,7 @@ public class Spawner : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(changePositionInSeconds);
-            transform.position =  KeepDefautltHeight(allPositionInCircleArroundBarn[Random.Range(0, allPositionInCircleArroundBarn.Count)]);
+            transform.position = KeepDefautltHeight(allPositionInCircleArroundBarn[Random.Range(0, allPositionInCircleArroundBarn.Count)]);
             transform.LookAt(KeepDefautltHeight(barnPosition));
         }
     }
