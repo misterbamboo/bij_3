@@ -104,7 +104,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5.968107
+  m_Radius: 16.567436
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4717436340217493809
 PrefabInstance:
@@ -220,28 +220,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 713047902968650960, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
-      propertyPath: speed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 713047902968650960, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
-      propertyPath: Damage
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 713047902968650960, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
-      propertyPath: parent
-      value: 
-      objectReference: {fileID: 4526608585822910275}
-    - target: {fileID: 713047902968650960, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
       propertyPath: beeHive
       value: 
       objectReference: {fileID: 4526608585822910275}
-    - target: {fileID: 713047902968650960, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
-      propertyPath: attackSpeed
-      value: 0.05
+    - target: {fileID: 1087551039030962096, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4037028986954463259, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
       propertyPath: m_Name
       value: Bee
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059485935888257016, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
+      propertyPath: m_Radius
+      value: 5.0516324
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}

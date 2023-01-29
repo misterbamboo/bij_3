@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   domage: 10
-  speed: 5
+  speed: 10
   attackCooldownInSeconds: 1
 --- !u!114 &4446209775262030894
 MonoBehaviour:
