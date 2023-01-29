@@ -162,7 +162,6 @@ public class MapGenerator : MonoBehaviour
 
         while (coord.Row < mapSize)
         {
-            print(perlinMap[coord.Col, coord.Row]);
             var leftOrRight = ((int)perlinMap[coord.Col, coord.Row]) % 2 == 0;
             coord = coord.Move(leftOrRight ? -1 : 1, 1);
 

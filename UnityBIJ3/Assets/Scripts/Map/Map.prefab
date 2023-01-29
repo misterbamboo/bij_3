@@ -99,4 +99,6 @@ MonoBehaviour:
   - {fileID: 2089865237223578643, guid: 47b0b3f8ecc3e584cae102d4c17d450c, type: 3}
   fenceLinkPrefab: {fileID: 6071294982642446871, guid: 25df02017c7ef7647877e5aed4348c26, type: 3}
   barnPrefab: {fileID: 7137904879104915290, guid: f3dab59b294e9594a95a1ddcd9240068, type: 3}
+  greenOutiline: {fileID: 2100000, guid: cd70e99957910b946814892694e4fe35, type: 2}
+  redOutline: {fileID: 2100000, guid: a651f8bdf6424c743a5806221276339d, type: 2}
   hexSize: 3

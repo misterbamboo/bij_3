@@ -28,6 +28,11 @@ public class Map
     public MapCellTypes GetMapCellType(int xCoord, int zCoord)
     {
         var coord = new MapCellCoord(xCoord, zCoord);
+        return GetMapCellType(coord);
+    }
+
+    public MapCellTypes GetMapCellType(MapCellCoord coord)
+    {
         if (!IsValidCoord(coord)) return MapCellTypes.None;
 
         var mapCell = GetCellAt(coord);
@@ -57,5 +62,23 @@ public class Map
         }
 
         return true;
+    }
+
+    public bool IsBlocked(MapCellCoord coord)
+    {
+        var cellType = GetMapCellType(coord);
+        switch (cellType)
+        {
+            case MapCellTypes.None:
+            case MapCellTypes.Fence:
+            case MapCellTypes.Barn:
+            case MapCellTypes.Turret:
+            default:
+                return true;
+            case MapCellTypes.Empty:
+            case MapCellTypes.Field:
+            case MapCellTypes.Dirt:
+                return false;
+        }
     }
 }
