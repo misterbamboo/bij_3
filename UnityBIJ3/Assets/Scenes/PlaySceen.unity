@@ -464,6 +464,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4718004318741218412, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
+      propertyPath: fencePrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 8698011862794784026, guid: 4c153abea72a1704b91f70c453c98d6f, type: 3}
+    - target: {fileID: 4718004318741218412, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
+      propertyPath: fencePrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 5328897789368185245, guid: 09d3f22899a9fc94ca4ded3a9b527d7a, type: 3}
+    - target: {fileID: 4718004318741218412, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
+      propertyPath: fencePrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1626609537818913132, guid: bbaa152bc5a809640a59fbdb68677105, type: 3}
+    - target: {fileID: 4718004318741218412, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
+      propertyPath: fencePrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 6179852037167417874, guid: df926ffc26dd9ec4aa0a8b2eba7992ca, type: 3}
     - target: {fileID: 4718004318741218414, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
       propertyPath: m_RootOrder
       value: 4

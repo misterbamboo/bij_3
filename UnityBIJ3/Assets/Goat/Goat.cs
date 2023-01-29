@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Goat : MonoBehaviour
@@ -17,11 +18,18 @@ public class Goat : MonoBehaviour
 
     bool attackOnCooldown = false;
 
+    List<GameObject> goatsBlocking = new List<GameObject>();
+
     void Start()
     {
-        var detectionZone = GetComponentInChildren<DetectionZone>();
-        gameObject.GetComponentInChildren<DetectionZone>().EnterRange += FocusTarget;
-        gameObject.GetComponentInChildren<DetectionZone>().ExitRange += UnfocusTarget;
+        var detectionZones = GetComponentsInChildren<DetectionZone>();
+        
+        detectionZones.First(d => d.name == "DetectionZone").EnterRange += FocusTarget;
+        detectionZones.First(d => d.name == "DetectionZone").ExitRange += UnfocusTarget;
+
+        detectionZones.First(d => d.name == "GoatDetectionZone").EnterRange += BlockByGoat;
+        detectionZones.First(d => d.name == "GoatDetectionZone").ExitRange += UnblockByGoat;
+
         gameObject.GetComponentInChildren<Health>().NoMoreHealth += Die;
     }
 
@@ -32,7 +40,7 @@ public class Goat : MonoBehaviour
         {
             Attack();
         }
-        else
+        else if(goatsBlocking.Count == 0)
         {
             MoveForward();
         }
@@ -46,11 +54,40 @@ public class Goat : MonoBehaviour
     void FocusTarget(GameObject target)
     {
         this.target = target;
+        this.target.GetComponent<Health>().NoMoreHealth += FocusDead;
     }
 
     void UnfocusTarget(GameObject target)
     {
+        if(this.target == null)
+        {
+            return;
+        }
+            
+        this.target.GetComponent<Health>().NoMoreHealth -= FocusDead;
         this.target = null;
+    }
+
+    void FocusDead()
+    {
+        if(target != null)
+        {
+            this.UnfocusTarget(target);
+        }
+    }
+
+    
+    void BlockByGoat(GameObject goat)
+    {
+        print("BlockByGoat " + goat.name + " is blocking the way");
+        goatsBlocking.Add(goat);
+    }
+
+    void UnblockByGoat(GameObject goat)
+    {
+        var instanceId = goat.GetInstanceID();
+        var enemyToRemove = goatsBlocking.First(e => e.GetInstanceID() == instanceId);
+        goatsBlocking.Remove(enemyToRemove);
     }
 
     void Attack()
@@ -74,5 +111,10 @@ public class Goat : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+    }
+
+    List<GameObject> FilterGoatsInRange()
+    {
+        return goatsBlocking.Where(e => e != null).ToList();
     }
 }
