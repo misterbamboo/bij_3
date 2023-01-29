@@ -223,17 +223,9 @@ PrefabInstance:
       propertyPath: beeHive
       value: 
       objectReference: {fileID: 4526608585822910275}
-    - target: {fileID: 1087551039030962096, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
-      propertyPath: ShapeModule.radius.value
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4037028986954463259, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
       propertyPath: m_Name
       value: Bee
-      objectReference: {fileID: 0}
-    - target: {fileID: 5059485935888257016, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
-      propertyPath: m_Radius
-      value: 5.0516324
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}

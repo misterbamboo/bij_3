@@ -43,7 +43,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5382167
+  m_Radius: 5.0516324
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8472299276850648087
 MonoBehaviour:
@@ -57,7 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5b81737f4f2aa4fb6fb4a9b5c0ae1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TagsSelector: []
+  TagsSelector:
+  - Enemy
 --- !u!1 &4037028986954463259
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +158,10 @@ PrefabInstance:
     - target: {fileID: 9216589074990562328, guid: bec0e785e5abf1944b086e0b054d71cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216589074990562331, guid: bec0e785e5abf1944b086e0b054d71cc, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9216589074990562333, guid: bec0e785e5abf1944b086e0b054d71cc, type: 3}
       propertyPath: m_Name
