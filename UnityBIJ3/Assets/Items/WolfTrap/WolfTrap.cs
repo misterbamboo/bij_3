@@ -53,7 +53,7 @@ public class WolfTrap : MonoBehaviour
     void AttackZone()
     {
         enemiesInRange = FilterEnemiesInRange();
-
+        print("Attack : " + enemiesInRange.Count + " enemies");
         foreach(var enemy in enemiesInRange)
         {
             var health = enemy.GetComponent<Health>();
