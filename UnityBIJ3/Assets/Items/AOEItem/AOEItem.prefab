@@ -109,6 +109,7 @@ MonoBehaviour:
   attackSpeed: 2
   damage: 30
   particleSystem: {fileID: 5983070245885618927}
+  isActive: 0
 --- !u!1 &3703747112860810280
 GameObject:
   m_ObjectHideFlags: 0

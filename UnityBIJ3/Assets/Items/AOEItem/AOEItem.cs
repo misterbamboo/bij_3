@@ -16,6 +16,8 @@ public class AOEItem : MonoBehaviour
 
     List<GameObject> enemiesInRange = new List<GameObject>();
 
+    public bool isActive = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,14 +27,17 @@ public class AOEItem : MonoBehaviour
     }
 
     IEnumerator AttackZone()
-    {           
-        particleSystem.Play();
-        enemiesInRange = FilterEnemiesInRange();
-
-        foreach(var enemy in enemiesInRange)
+    {         
+        if(isActive)  
         {
-            var health = enemy.GetComponent<Health>();
-            health.Damage(damage);
+            particleSystem.Play();
+            enemiesInRange = FilterEnemiesInRange();
+
+            foreach(var enemy in enemiesInRange)
+            {
+                var health = enemy.GetComponent<Health>();
+                health.Damage(damage);
+            }
         }
 
         yield return new WaitForSeconds(attackSpeed);

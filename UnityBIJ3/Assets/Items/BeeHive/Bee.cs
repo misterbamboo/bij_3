@@ -21,6 +21,8 @@ public class Bee : MonoBehaviour
 
     List<GameObject> enemiesInRange = new List<GameObject>();
 
+    public bool isActive = false;
+
     void Start()
     {
         gameObject.GetComponentInChildren<DetectionZone>().EnterRange += AddInRange;
@@ -77,12 +79,15 @@ public class Bee : MonoBehaviour
 
     IEnumerator AttackZone()
     {           
-        enemiesInRange = FilterEnemiesInRange();
-
-        foreach(var enemy in enemiesInRange)
+        if(isActive)
         {
-            var health = enemy.GetComponent<Health>();
-            health.Damage(Damage);
+            enemiesInRange = FilterEnemiesInRange();
+
+            foreach(var enemy in enemiesInRange)
+            {
+                var health = enemy.GetComponent<Health>();
+                health.Damage(Damage);
+            }
         }
 
         yield return new WaitForSeconds(attackSpeed);
