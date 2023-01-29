@@ -70,7 +70,7 @@ public class Goat : MonoBehaviour
 
     void FocusDead()
     {
-        if(target != null)
+        if(target != null && target.gameObject.tag != "Barn")
         {
             this.UnfocusTarget(target);
         }
