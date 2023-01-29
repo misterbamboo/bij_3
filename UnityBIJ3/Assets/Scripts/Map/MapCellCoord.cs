@@ -31,4 +31,9 @@ public struct MapCellCoord : IEqualityComparer<MapCellCoord>
     {
         return $"{Col};{Row}".GetHashCode();
     }
+
+    public MapCellCoord Move(int xMove, int zMove)
+    {
+        return new MapCellCoord(Col + xMove, Row + zMove);
+    }
 }

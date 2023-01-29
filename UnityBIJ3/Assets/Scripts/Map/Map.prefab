@@ -94,6 +94,14 @@ MonoBehaviour:
   - {fileID: 386565140120253096, guid: 0c5145922c4842d47b53940ee838f1dd, type: 3}
   - {fileID: 4290206267823526784, guid: 2597682a7b13e454eaffb1db3a74c159, type: 3}
   - {fileID: 4438781087978412759, guid: 048c27800471981468197bbc1fd350b5, type: 3}
+<<<<<<< HEAD
   fenceLinkPrefab: {fileID: 6071294982642446871, guid: 25df02017c7ef7647877e5aed4348c26, type: 3}
   barnPrefab: {fileID: 7137904879104915290, guid: f3dab59b294e9594a95a1ddcd9240068, type: 3}
+=======
+  dirtPrefabs:
+  - {fileID: 6839678197071607513, guid: 6e3ff4c8b659c86429b6fa3e477c8d31, type: 3}
+  - {fileID: 2089865237223578643, guid: 47b0b3f8ecc3e584cae102d4c17d450c, type: 3}
+  fenceLinkPrefab: {fileID: 8328018272679008969, guid: 14410f65ff95861439965c4881a7b1f4, type: 3}
+  barnPrefab: {fileID: 3379494580506947776, guid: cae763a729e352e4281c324c0f686bdf, type: 3}
+>>>>>>> main
   hexSize: 3

@@ -6,6 +6,7 @@ public class MapDrawer : MonoBehaviour
 {
     [SerializeField] GameObject[] fieldPrefabs;
     [SerializeField] GameObject[] fencePrefabs;
+    [SerializeField] GameObject[] dirtPrefabs;
     [SerializeField] GameObject fenceLinkPrefab;
     [SerializeField] GameObject barnPrefab;
 
@@ -61,6 +62,9 @@ public class MapDrawer : MonoBehaviour
                 break;
             case MapCellTypes.Field:
                 prefab = GetRandomPrefab(fieldPrefabs);
+                break;
+            case MapCellTypes.Dirt:
+                prefab = GetRandomPrefab(dirtPrefabs);
                 break;
             case MapCellTypes.Barn:
                 prefab = barnPrefab;
