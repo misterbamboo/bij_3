@@ -51,6 +51,9 @@ public class MoneySys : MonoBehaviour
 
         _instance = this;
 
+        // TODO: REMOVE ? Add another way ?
+        PlayerPrefs.SetInt("MoneySave", 100);
+
         AddMoneyToBank(PlayerPrefs.GetInt("MoneySave", 0));
 
         StartCoroutine("SaveMoneyToBank");
@@ -68,7 +71,6 @@ public class MoneySys : MonoBehaviour
     public static bool BuyItem(int cost)
     {
         if (instance.baaCoins - cost >= 0)
-
         {
             instance.baaCoins -= cost;
             return true;

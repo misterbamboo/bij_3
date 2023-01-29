@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -18,6 +16,19 @@ public class InventoryManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             menuInventory.SetActive(!menuInventory.activeSelf);
+        }
+    }
+
+    public void BuyTurret()
+    {
+        if (MoneySys.BuyItem(10))
+        {
+            GameEvent.RaiseEvent(new ItemBoughtEvent(ItemKeys.Turret));
+            menuInventory.SetActive(false);
+        }
+        else
+        {
+            GameEvent.RaiseEvent(new NotEnoughtMoneyEvent());
         }
     }
 }
