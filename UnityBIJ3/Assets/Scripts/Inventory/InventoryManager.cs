@@ -26,7 +26,6 @@ public class InventoryManager : MonoBehaviour
 
     private void BuyItem(string itemKey, int price)
     {
-        print("price :" + price);
         if (MoneySys.BuyItem(price))
         {
             GameEvent.RaiseEvent(new ItemBoughtEvent(itemKey));
