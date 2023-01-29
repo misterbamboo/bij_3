@@ -21,6 +21,12 @@ public class Goat : MonoBehaviour
     [SerializeField]
     Animator animator;
 
+    [SerializeField]
+    ParticleSystem bloodParticle;
+
+    [SerializeField]
+    ParticleSystem grassParticle;
+
     GameObject target = null;
 
     bool attackOnCooldown = false;
@@ -37,7 +43,9 @@ public class Goat : MonoBehaviour
         detectionZones.First(d => d.name == "GoatDetectionZone").EnterRange += BlockByGoat;
         detectionZones.First(d => d.name == "GoatDetectionZone").ExitRange += UnblockByGoat;
 
-        gameObject.GetComponentInChildren<Health>().NoMoreHealth += Die;
+        var health = gameObject.GetComponentInChildren<Health>();
+        health.NoMoreHealth += Die;
+        health.HealthUpdate += BloodParticle;
     }
 
     // Update is called once per frame
@@ -46,19 +54,21 @@ public class Goat : MonoBehaviour
         if (target != null)
         {
             animator.SetBool("walking", false);
+            grassParticle.Stop();
             Attack();
         }
         else if (goatsBlocking.Count == 0)
         {
             if(animator.GetBool("walking") == false)
             {
-                print("MARCHEEEEE");
                 animator.SetBool("walking", true);
+                grassParticle.Play();
             }
             MoveForward();
         }
         else
         {
+            grassParticle.Stop();
             animator.SetBool("walking", false);
         }
     }
@@ -93,7 +103,6 @@ public class Goat : MonoBehaviour
         }
     }
 
-
     void BlockByGoat(GameObject goat)
     {
         goatsBlocking.Add(goat);
@@ -126,8 +135,14 @@ public class Goat : MonoBehaviour
 
     void Die()
     {
+        bloodParticle.Play();
         MoneySys.AddMoneyToBank(moneyValue);
         Destroy(gameObject);
+    }
+
+    void BloodParticle(float health)
+    {
+        bloodParticle.Play();
     }
 
     List<GameObject> FilterGoatsInRange()

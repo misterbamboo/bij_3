@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/HomeScreen.unity
     guid: a6048ab052892df408ed2b218faaf042
   - enabled: 1
-    path: Assets/Scenes/PlaySceen.unity
+    path: Assets/Scenes/PlayScreen.unity
     guid: 34921318d00dc4847a5afbbc08eb23cf
+  - enabled: 1
+    path: Assets/Scenes/CreditScreen.unity
+    guid: 13f4911eb30f1c341b75ba9c3955eedc
   m_configObjects: {}

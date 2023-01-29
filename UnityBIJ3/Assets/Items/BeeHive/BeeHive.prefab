@@ -223,9 +223,17 @@ PrefabInstance:
       propertyPath: beeHive
       value: 
       objectReference: {fileID: 4526608585822910275}
+    - target: {fileID: 3017040873070628463, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4037028986954463259, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
       propertyPath: m_Name
       value: Bee
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037028986954463259, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a8be7feeb485ae468ce52b83376d364, type: 3}

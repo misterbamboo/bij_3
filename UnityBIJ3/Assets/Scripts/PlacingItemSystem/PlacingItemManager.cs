@@ -173,6 +173,22 @@ public class PlacingItemManager : MonoBehaviour
 
     private void PlaceItem(MapCellCoord coord, Map map)
     {
+        switch (ItemToPlace)
+        {
+            case ItemKeys.Trap:
+                GameObjectToPlace.GetComponent<WolfTrap>().isActive = true;
+                break;
+            case ItemKeys.Bees:
+                GameObjectToPlace.GetComponentInChildren<Bee>().isActive = true;
+                break;
+            case ItemKeys.CampFire:
+                 GameObjectToPlace.GetComponent<AOEItem>().isActive = true;
+                break;
+            default:
+                break;
+        }
+
+
         ItemToPlace = null;
         GameObjectToPlace = null;
         closestAnchor = new PlaceItemAnchor();

@@ -15,6 +15,8 @@ public class Tower : MonoBehaviour
 
     List<GameObject> enemiesInRange = new List<GameObject>();
 
+    bool isActive = false;
+
     void Start()
     {
         gameObject.GetComponentInChildren<DetectionZone>().EnterRange += AddInRange;
@@ -53,8 +55,11 @@ public class Tower : MonoBehaviour
 
     void Attack(GameObject target)
     {
-        var newPojectile = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
-        newPojectile.Init(target);
+        if(isActive)
+        {
+            var newPojectile = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
+            newPojectile.Init(target);
+        }
     }
 
     IEnumerator Cooldown()
