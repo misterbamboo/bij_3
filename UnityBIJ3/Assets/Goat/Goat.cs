@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ public class Goat : MonoBehaviour
     void Start()
     {
         var detectionZones = GetComponentsInChildren<DetectionZone>();
-        
+
         detectionZones.First(d => d.name == "DetectionZone").EnterRange += FocusTarget;
         detectionZones.First(d => d.name == "DetectionZone").ExitRange += UnfocusTarget;
 
@@ -42,12 +43,12 @@ public class Goat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target != null)
+        if (target != null)
         {
             animator.SetBool("walking", false);
             Attack();
         }
-        else if(goatsBlocking.Count == 0)
+        else if (goatsBlocking.Count == 0)
         {
             if(animator.GetBool("walking") == false)
             {
@@ -75,24 +76,24 @@ public class Goat : MonoBehaviour
 
     void UnfocusTarget(GameObject target)
     {
-        if(this.target == null)
+        if (this.target == null)
         {
             return;
         }
-            
+
         this.target.GetComponent<Health>().NoMoreHealth -= FocusDead;
         this.target = null;
     }
 
     void FocusDead()
     {
-        if(target != null && target.gameObject.tag != "Barn")
+        if (target != null && target.gameObject.tag != "Barn")
         {
             this.UnfocusTarget(target);
         }
     }
 
-    
+
     void BlockByGoat(GameObject goat)
     {
         goatsBlocking.Add(goat);
@@ -107,7 +108,7 @@ public class Goat : MonoBehaviour
 
     void Attack()
     {
-        if(attackOnCooldown)
+        if (attackOnCooldown)
         {
             return;
         }
@@ -132,5 +133,10 @@ public class Goat : MonoBehaviour
     List<GameObject> FilterGoatsInRange()
     {
         return goatsBlocking.Where(e => e != null).ToList();
+    }
+
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
     }
 }

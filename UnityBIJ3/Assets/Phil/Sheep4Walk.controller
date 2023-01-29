@@ -20,7 +20,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: cae7b71e36b3cfd4d856b23441761dee, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3b26d0c69d7241242a39e58d3db53d8f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -68,7 +68,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b0dcedcafe1ed664b8b0b277517d35d7, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1c71cfc80eb6fc74fa92acd8729f2a8c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -121,7 +121,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1131b8fa3390df3458dfeb6d53ee6253, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3b26d0c69d7241242a39e58d3db53d8f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -133,7 +133,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: sheep1 1
+  m_Name: Sheep4Walk
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
