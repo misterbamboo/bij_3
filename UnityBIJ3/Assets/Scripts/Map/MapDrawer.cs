@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class MapDrawer : MonoBehaviour
 {
     [SerializeField] GameObject[] fieldPrefabs;
+    [SerializeField] GameObject[] fencePrefabs;
+    [SerializeField] GameObject fenceLinkPrefab;
     [SerializeField] GameObject barnPrefab;
 
     [SerializeField] float hexSize = 1;
@@ -31,12 +35,17 @@ public class MapDrawer : MonoBehaviour
                 var xCoord = (x * 2) + (zCoord % 2);
                 var type = Map.GetMapCellType(xCoord, zCoord);
 
-                DrawHexPrefab(zCoord, xCoord, x, type);
+                DrawHexPrefab(xCoord, zCoord, x, type);
+
+                if (type == MapCellTypes.Fence)
+                {
+                    DrawFenceLinks(xCoord, zCoord, x);
+                }
             }
         }
     }
 
-    private void DrawHexPrefab(int zCoord, int xCoord, int x, MapCellTypes type)
+    private void DrawHexPrefab(int xCoord, int zCoord, int x, MapCellTypes type)
     {
         var xOff = (zCoord % 2) * (hexWidth / 2f);
         var pos = new Vector3(x * hexWidth + xOff, 0, zCoord * 3f / 4f * hexHeight);
@@ -48,7 +57,7 @@ public class MapDrawer : MonoBehaviour
                 prefab = GetRandomPrefab(fieldPrefabs);
                 break;
             case MapCellTypes.Fence:
-                prefab = GetRandomPrefab(fieldPrefabs);
+                prefab = GetRandomPrefab(fencePrefabs);
                 break;
             case MapCellTypes.Field:
                 prefab = GetRandomPrefab(fieldPrefabs);
@@ -67,6 +76,30 @@ public class MapDrawer : MonoBehaviour
         var hex = Instantiate(prefab, pos, Quaternion.identity);
         var hexCellScript = hex.AddComponent<HexCellScript>();
         hexCellScript.SetData(xCoord, zCoord, pos);
+    }
+
+    private void DrawFenceLinks(int xCoord, int zCoord, int x)
+    {
+        var xOff = (zCoord % 2) * (hexWidth / 2f);
+        var pos = new Vector3(x * hexWidth + xOff, 0, zCoord * 3f / 4f * hexHeight);
+
+        var topLeftType = Map.GetMapCellType(xCoord - 1, zCoord - 1);
+        if (topLeftType == MapCellTypes.Fence)
+        {
+            Instantiate(fenceLinkPrefab, pos, Quaternion.Euler(0, 210, 0));
+        }
+
+        var topRightType = Map.GetMapCellType(xCoord + 1, zCoord - 1);
+        if (topRightType == MapCellTypes.Fence)
+        {
+            Instantiate(fenceLinkPrefab, pos, Quaternion.Euler(0, -210, 0));
+        }
+
+        var leftType = Map.GetMapCellType(xCoord - 2, zCoord);
+        if (leftType == MapCellTypes.Fence)
+        {
+            Instantiate(fenceLinkPrefab, pos, Quaternion.Euler(0, 270, 0));
+        }
     }
 
     private GameObject GetRandomPrefab(GameObject[] prefabs)
