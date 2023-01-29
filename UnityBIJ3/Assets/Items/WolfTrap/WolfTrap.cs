@@ -3,38 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AOEItem : MonoBehaviour
+public class WolfTrap : MonoBehaviour
 {
     [SerializeField]
-    float pulseTime = 1.0f;
+    float domage = 100.0f;
 
     [SerializeField]
-    float domage = 5.0f;
+    float attackCooldownInSeconds = 10.0f;
+
+    bool attackOnCooldown = false;
 
     List<GameObject> enemiesInRange = new List<GameObject>();
 
-    // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponentInChildren<DetectionZone>().EnterRange += AddInRange;
         gameObject.GetComponentInChildren<DetectionZone>().ExitRange += RemoveFromRange;
-        StartCoroutine(AttackZone());
     }
 
-    IEnumerator AttackZone()
-    {           
-        enemiesInRange = FilterEnemiesInRange();
-
-        print(enemiesInRange.Count);
-
-        foreach(var enemy in enemiesInRange)
+    void Update()
+    {
+        if(attackOnCooldown)
+            return;
+        
+        if(enemiesInRange.Count > 0)
         {
-            var health = enemy.GetComponent<Health>();
-            health.Damage(domage);
+            enemiesInRange = FilterEnemiesInRange();
         }
-
-        yield return new WaitForSeconds(pulseTime);
-        StartCoroutine(AttackZone());
+        
+        if(enemiesInRange.Count > 0)
+        {           
+            AttackZone();
+            StartCoroutine(Cooldown());
+        }
     }
 
     void AddInRange(GameObject enemy)
@@ -47,6 +48,24 @@ public class AOEItem : MonoBehaviour
         var instanceId = enemy.GetInstanceID();
         var enemyToRemove = enemiesInRange.First(e => e.GetInstanceID() == instanceId);
         enemiesInRange.Remove(enemyToRemove);
+    }
+
+    void AttackZone()
+    {
+        enemiesInRange = FilterEnemiesInRange();
+
+        foreach(var enemy in enemiesInRange)
+        {
+            var health = enemy.GetComponent<Health>();
+            health.Damage(domage);
+        }
+    }
+
+    IEnumerator Cooldown()
+    {
+        attackOnCooldown = true;
+        yield return new WaitForSeconds(attackCooldownInSeconds);
+        attackOnCooldown = false;
     }
 
     List<GameObject> FilterEnemiesInRange()
