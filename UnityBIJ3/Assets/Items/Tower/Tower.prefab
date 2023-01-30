@@ -190,6 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TagsSelector:
   - Enemy
+  TagsFilter:
+  - Enemy
 --- !u!135 &3237068921110542380
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class DetectionZone : MonoBehaviour
 {
-    [TagSelector]
+    //[TagSelector]
     public List<string> TagsSelector;
 
-	public event Action<GameObject> EnterRange = delegate { };
+    [SerializeField] List<string> TagsFilter;
 
-	public event Action<GameObject> ExitRange = delegate { };
+    public event Action<GameObject> EnterRange = delegate { };
+
+    public event Action<GameObject> ExitRange = delegate { };
 
     private void OnTriggerEnter(Collider other)
     {

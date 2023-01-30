@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TagsSelector:
   - Enemy
+  TagsFilter: []
 --- !u!65 &1891005394677146201
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -136,6 +137,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TagsSelector:
+  - Barn
+  - Fence
+  TagsFilter:
   - Barn
   - Fence
 --- !u!1 &3637567527484741018
