@@ -59,6 +59,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TagsSelector:
   - Enemy
+  TagsFilter:
+  - Enemy
 --- !u!1 &6834143987391954055
 GameObject:
   m_ObjectHideFlags: 0

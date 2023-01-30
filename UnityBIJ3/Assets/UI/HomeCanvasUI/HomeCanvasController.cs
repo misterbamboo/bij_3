@@ -11,8 +11,11 @@ public class HomeCanvasController : MonoBehaviour
 
     public void Quit()
     {
-        Application.Quit();
+#if UNITY_EDITOR
         EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
     public void CreditScreen()
