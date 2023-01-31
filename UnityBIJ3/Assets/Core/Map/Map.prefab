@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4718004318741218416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4718004318741218414}
+  - component: {fileID: 4718004318741218415}
+  - component: {fileID: 4718004318741218413}
+  - component: {fileID: 4718004318741218412}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4718004318741218414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718004318741218416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4718004318741218415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718004318741218416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2d0938a30ca94a41b8c61c8ee4d32f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapSize: 60
+  xScale: 2.1
+  zScale: 5.6
+  xOffset: 2.02
+  zOffset: 17.9
+  yOffset: -5
+  height: 5
+  centerPosX: 56
+  centerPosZ: 28
+  centerRadius: 44.61
+  centerMultiplier: 4.18
+--- !u!114 &4718004318741218413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718004318741218416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb7c06733760df4c800660b3e2cd33b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hexSize: 3
+--- !u!114 &4718004318741218412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718004318741218416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6555d06dc6e144c9260ea53fd69ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fieldPrefabs:
+  - {fileID: 8351788409494111621, guid: 88cf5074d2464f04dbec67e87300ba1c, type: 3}
+  - {fileID: 1914120340982674485, guid: 5f43160f2e3d8594b8ff329d344d27c8, type: 3}
+  - {fileID: 6147046055366993395, guid: 14f9d486cce699c4aad237943c263ff6, type: 3}
+  - {fileID: 8681345961053507156, guid: 2cf8377900b1e304ba0b4d91bce413a0, type: 3}
+  - {fileID: 4458586629588751067, guid: 67ab6d49a9788524e8d1ea9e60d9edc9, type: 3}
+  - {fileID: 2448161675255772330, guid: cc28b94095097de4b927c308496a7786, type: 3}
+  - {fileID: 4339177405696719257, guid: 3354e60e17f2ebc4e9c1ffa129914650, type: 3}
+  fencePrefabs:
+  - {fileID: 544369236307099665, guid: 72425afe3503c6642ac5f5c873fd4071, type: 3}
+  - {fileID: 386565140120253096, guid: 0c5145922c4842d47b53940ee838f1dd, type: 3}
+  - {fileID: 4290206267823526784, guid: 2597682a7b13e454eaffb1db3a74c159, type: 3}
+  - {fileID: 4438781087978412759, guid: 048c27800471981468197bbc1fd350b5, type: 3}
+  dirtPrefabs:
+  - {fileID: 6839678197071607513, guid: 6e3ff4c8b659c86429b6fa3e477c8d31, type: 3}
+  - {fileID: 2089865237223578643, guid: 47b0b3f8ecc3e584cae102d4c17d450c, type: 3}
+  fenceLinkPrefab: {fileID: 6071294982642446871, guid: 25df02017c7ef7647877e5aed4348c26, type: 3}
+  barnPrefab: {fileID: 7137904879104915290, guid: f3dab59b294e9594a95a1ddcd9240068, type: 3}
+  greenOutiline: {fileID: 2100000, guid: cd70e99957910b946814892694e4fe35, type: 2}
+  redOutline: {fileID: 2100000, guid: a651f8bdf6424c743a5806221276339d, type: 2}
+  hexSize: 3
