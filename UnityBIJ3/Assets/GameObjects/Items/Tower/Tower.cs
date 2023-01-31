@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,23 @@ public class Tower : MonoBehaviour
     GameObject projectile;
     
     [SerializeField]
+    Animator animator;
+
+    [SerializeField]
     float attackCooldownInSeconds = 1f;
+
+    [SerializeField]
+    GameObject projectileHolder;
+
+    public event Action Throw = delegate { };
 
     bool attackOnCooldown = false;
 
     List<GameObject> enemiesInRange = new List<GameObject>();
 
-    bool isActive = false;
+    public bool isActive = false;
+
+    Projectile LastSpawnProjectile;
 
     void Start()
     {
@@ -36,9 +47,15 @@ public class Tower : MonoBehaviour
         
         if(enemiesInRange.Count > 0)
         {           
+
             Attack(enemiesInRange[0]);
             StartCoroutine(Cooldown());
         }
+    }
+
+    public void ReleaseProjectile()
+    {
+        LastSpawnProjectile.Release();
     }
 
     void AddInRange(GameObject enemy)
@@ -57,8 +74,10 @@ public class Tower : MonoBehaviour
     {
         if(isActive)
         {
-            var newPojectile = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
-            newPojectile.Init(target);
+            transform.LookAt(target.transform);
+            LastSpawnProjectile = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
+            LastSpawnProjectile.Init(target, projectileHolder, this);
+            animator.SetBool("Throw", true);
         }
     }
 
@@ -67,6 +86,7 @@ public class Tower : MonoBehaviour
         attackOnCooldown = true;
         yield return new WaitForSeconds(attackCooldownInSeconds);
         attackOnCooldown = false;
+        animator.SetBool("Throw", false);
     }
 
     List<GameObject> FilterEnemiesInRange()

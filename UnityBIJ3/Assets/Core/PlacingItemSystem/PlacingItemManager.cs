@@ -9,6 +9,7 @@ public class PlacingItemManager : MonoBehaviour
     [SerializeField] GameObject trapPrefab;
     [SerializeField] GameObject beeHomePrefab;
     [SerializeField] GameObject campFirePrefab;
+    [SerializeField] GameObject towerPrefab;
 
     private int placeItemPlaneLayerMask;
     private float hexWidth;
@@ -48,6 +49,9 @@ public class PlacingItemManager : MonoBehaviour
                 break;
             case ItemKeys.CampFire:
                 GameObjectToPlace = Instantiate(campFirePrefab);
+                break;
+            case ItemKeys.Tower:
+                GameObjectToPlace = Instantiate(towerPrefab);
                 break;
             default:
                 break;
@@ -182,7 +186,10 @@ public class PlacingItemManager : MonoBehaviour
                 GameObjectToPlace.GetComponentInChildren<Bee>().isActive = true;
                 break;
             case ItemKeys.CampFire:
-                 GameObjectToPlace.GetComponent<AOEItem>().isActive = true;
+                GameObjectToPlace.GetComponent<AOEItem>().isActive = true;
+                break;
+            case ItemKeys.Tower:
+                GameObjectToPlace.GetComponent<Tower>().isActive = true;
                 break;
             default:
                 break;

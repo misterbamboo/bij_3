@@ -403,7 +403,7 @@ PrefabInstance:
       objectReference: {fileID: 6179852037167417874, guid: df926ffc26dd9ec4aa0a8b2eba7992ca, type: 3}
     - target: {fileID: 4718004318741218414, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4718004318741218414, guid: 8ee538a95e0c3b8408a4c31889982d68, type: 3}
       propertyPath: m_LocalPosition.x
@@ -485,14 +485,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 287788169}
     m_Modifications:
-    - target: {fileID: 4174955380104501470, guid: 155f1bb339320ae419897a025d3cb7d6, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4381624653184387009, guid: 155f1bb339320ae419897a025d3cb7d6, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6933357047777402542, guid: 155f1bb339320ae419897a025d3cb7d6, type: 3}
       propertyPath: m_Name
       value: InventoryUI
@@ -744,7 +736,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1889680001
 PrefabInstance:

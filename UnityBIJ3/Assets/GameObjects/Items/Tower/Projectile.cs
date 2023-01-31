@@ -11,10 +11,17 @@ public class Projectile : MonoBehaviour
     float speed = 10.0f;
 
     GameObject target;
+    
+    GameObject holder;
 
-    public void Init(GameObject target)
+
+    bool isReleased = false;
+
+    public void Init(GameObject target, GameObject holder, Tower parent)
     {
         this.target = target;
+        this.holder = holder;
+        parent.Throw += Release;
     }
 
     void Update()
@@ -24,7 +31,14 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        if(!isReleased)
+        {
+            transform.position = holder.transform.position;
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -34,5 +48,10 @@ public class Projectile : MonoBehaviour
             other.gameObject.GetComponent<Health>().Damage(Damage);
             Destroy(gameObject);
         }
+    }
+
+    public void Release()
+    {
+        isReleased = true;
     }
 }
