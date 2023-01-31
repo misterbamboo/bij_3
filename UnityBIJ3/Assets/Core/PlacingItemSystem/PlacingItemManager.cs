@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlacingItemManager : MonoBehaviour
 {
+    public static PlacingItemManager Instance { get; private set; }
+
+    public PlacingItemUtils PlacingItemUtils => placingItemUtils;
+
     [SerializeField] float hexSize = 3;
     [SerializeField] GameObject fencePrefab;
     [SerializeField] GameObject trapPrefab;
@@ -14,13 +16,17 @@ public class PlacingItemManager : MonoBehaviour
     private float hexWidth;
     private float hexHeight;
     private float hexHeightPerIndex;
-    private int selectionApproxZIndex;
-    private int selectionApproxXIndex;
-    private PlaceItemAnchor closestAnchor;
+    private PlacingItemUtils placingItemUtils;
 
     private string ItemToPlace { get; set; }
     private GameObject GameObjectToPlace { get; set; }
     public MapCellCoord LastHighlighCoord { get; private set; }
+    private SnapPosition currentAnchor = new SnapPosition();
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -30,6 +36,8 @@ public class PlacingItemManager : MonoBehaviour
         hexWidth = Mathf.Sqrt(3) * hexSize;
         hexHeight = hexSize * 2;
         hexHeightPerIndex = 3f / 4f * hexHeight;
+
+        placingItemUtils = new PlacingItemUtils(hexHeightPerIndex, hexWidth);
     }
 
     private void ItemBoughtHandler(ItemBoughtEvent evnt)
@@ -56,9 +64,6 @@ public class PlacingItemManager : MonoBehaviour
 
     private void Update()
     {
-        selectionApproxXIndex = -1000;
-        selectionApproxZIndex = -1000;
-
         if (!string.IsNullOrEmpty(ItemToPlace))
         {
             MoveItemToPointerPosition();
@@ -76,48 +81,22 @@ public class PlacingItemManager : MonoBehaviour
             //var xOff = (zCoord % 2) * (hexWidth / 2f);
             //var pos = new Vector3(x * hexWidth + xOff, 0, zCoord * );
 
-            selectionApproxZIndex = (int)(hit.point.z / hexHeightPerIndex);
-
-            var xOff = ((selectionApproxZIndex - 1) % 2) * (hexWidth / 2);
-            selectionApproxXIndex = (int)((hit.point.x - xOff) / hexWidth);
-
-            float closedDistance = float.MaxValue;
-            foreach (var anchor in GetNeerbyAnchors())
-            {
-                var distance = (anchor.Position - hit.point).magnitude;
-                if (distance < closedDistance)
-                {
-                    closedDistance = distance;
-                    closestAnchor = anchor;
-                }
-            }
+            var closestAnchor = placingItemUtils.FindClosestSnapPosition(hit.point);
 
             GameObjectToPlace.transform.position = new Vector3(closestAnchor.Position.x, hit.point.y, closestAnchor.Position.z);
+            currentAnchor = closestAnchor;
         }
     }
 
     private void OnDrawGizmos()
     {
-        foreach (var anchor in GetNeerbyAnchors())
+        if (GameObjectToPlace != null)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(anchor.Position, 0.5f);
-        }
-    }
-
-    private IEnumerable<PlaceItemAnchor> GetNeerbyAnchors()
-    {
-        for (int xInd = selectionApproxXIndex - 1; xInd <= selectionApproxXIndex + 1; xInd++)
-        {
-            for (int zInd = selectionApproxZIndex - 1; zInd <= selectionApproxZIndex + 1; zInd++)
+            var approx = placingItemUtils.GetApproximativeXZIndex(GameObjectToPlace.transform.position);
+            foreach (var anchor in placingItemUtils.GetNeerbySnapPositions(approx))
             {
-                var zPos = zInd * hexHeightPerIndex;
-
-                var xOff = (zInd % 2) * hexWidth / 2;
-                var xPos = xInd * hexWidth + xOff;
-
-                var anchor = new PlaceItemAnchor(xInd, zInd, new Vector3(xPos, 2, zPos));
-                yield return anchor;
+                Gizmos.color = Color.red;
+                Gizmos.DrawSphere(anchor.Position, 0.5f);
             }
         }
     }
@@ -158,15 +137,15 @@ public class PlacingItemManager : MonoBehaviour
     private MapCellCoord GetPointedCoord()
     {
         int zCoord, xCoord;
-        if (closestAnchor.ZIndex % 2 == 0)
+        if (currentAnchor.ZIndex % 2 == 0)
         {
-            zCoord = closestAnchor.ZIndex + ((closestAnchor.ZIndex % 2) * -1);
-            xCoord = (closestAnchor.XIndex + (closestAnchor.ZIndex % 2)) * 2;
+            zCoord = currentAnchor.ZIndex + ((currentAnchor.ZIndex % 2) * -1);
+            xCoord = (currentAnchor.XIndex + (currentAnchor.ZIndex % 2)) * 2;
         }
         else
         {
-            zCoord = closestAnchor.ZIndex;
-            xCoord = (closestAnchor.XIndex * 2) + 1;
+            zCoord = currentAnchor.ZIndex;
+            xCoord = (currentAnchor.XIndex * 2) + 1;
         }
         return new MapCellCoord(xCoord, zCoord);
     }
@@ -182,7 +161,7 @@ public class PlacingItemManager : MonoBehaviour
                 GameObjectToPlace.GetComponentInChildren<Bee>().isActive = true;
                 break;
             case ItemKeys.CampFire:
-                 GameObjectToPlace.GetComponent<AOEItem>().isActive = true;
+                GameObjectToPlace.GetComponent<AOEItem>().isActive = true;
                 break;
             default:
                 break;
@@ -191,7 +170,7 @@ public class PlacingItemManager : MonoBehaviour
 
         ItemToPlace = null;
         GameObjectToPlace = null;
-        closestAnchor = new PlaceItemAnchor();
+        currentAnchor = new SnapPosition();
         map.SetMapCellType(coord, MapCellTypes.Turret);
         GameEvent.RaiseEvent(new ItemPlacedEvent());
     }

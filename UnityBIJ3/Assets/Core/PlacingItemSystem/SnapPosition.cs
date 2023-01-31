@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public struct PlaceItemAnchor
+public struct SnapPosition
 {
     public int XIndex;
     public int ZIndex;
     public Vector3 Position;
 
-    public PlaceItemAnchor(int xIndex, int zIndex, Vector3 position)
+    public SnapPosition(int xIndex, int zIndex, Vector3 position)
     {
         XIndex = xIndex;
         ZIndex = zIndex;

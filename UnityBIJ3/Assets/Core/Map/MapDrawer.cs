@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -16,14 +15,42 @@ public class MapDrawer : MonoBehaviour
     [SerializeField] Material redOutline;
 
     [SerializeField] float hexSize = 1;
-    private float hexWidth;
-    private float hexHeight;
+
+    public static MapDrawer Instance { get; private set; }
+
+    public float MapDrawWidth
+    {
+        get => (Map.MapSize * hexWidth);
+    }
+
+    public float MapDrawHeight
+    {
+        get => (Map.MapSize * hexHeight * 0.75f);
+    }
+
+    public float HexWidth
+    {
+        get => hexWidth;
+    }
+
+    public float HexHeight
+    {
+        get => hexHeight;
+    }
 
     private Map Map { get; set; }
+
+    private float hexWidth;
+    private float hexHeight;
 
     private Dictionary<MapCellCoord, MeshRenderer> hexCellsRenderers = new Dictionary<MapCellCoord, MeshRenderer>();
     private MeshRenderer currentHoverCellRenderer;
     private int currentHoverCellMaterialIndex = -1;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {

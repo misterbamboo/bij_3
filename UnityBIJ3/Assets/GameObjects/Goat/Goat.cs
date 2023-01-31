@@ -32,6 +32,7 @@ public class Goat : MonoBehaviour
     bool attackOnCooldown = false;
 
     List<GameObject> goatsBlocking = new List<GameObject>();
+    private Map map;
 
     void Start()
     {
@@ -46,11 +47,47 @@ public class Goat : MonoBehaviour
         var health = gameObject.GetComponentInChildren<Health>();
         health.NoMoreHealth += Die;
         health.HealthUpdate += BloodParticle;
+
+        map = MapGenerator.Instance.GetMap();
+    }
+
+    private void ForceStayInMapBoundries()
+    {
+        var pos = transform.position;
+        bool positionChanged = false;
+        if (pos.x < 0)
+        {
+            pos.x = 0;
+            positionChanged = true;
+        }
+        if (pos.x >= MapDrawer.Instance.MapDrawWidth)
+        {
+            pos.x = MapDrawer.Instance.MapDrawWidth - MapDrawer.Instance.HexWidth * 2;
+            positionChanged = true;
+        }
+        if (pos.z < 0)
+        {
+            pos.z = 0;
+            positionChanged = true;
+        }
+        if (pos.z >= MapDrawer.Instance.MapDrawHeight)
+        {
+            pos.z = MapDrawer.Instance.MapDrawHeight - MapDrawer.Instance.HexHeight * 2;
+            positionChanged = true;
+        }
+
+        if (positionChanged)
+        {
+            var util = PlacingItemManager.Instance.PlacingItemUtils;
+            var snapPosition = util.FindClosestSnapPosition(pos);
+            transform.position = new Vector3(snapPosition.Position.x, transform.position.y, snapPosition.Position.z);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        ForceStayInMapBoundries();
         CleanDestoyedBlocking();
 
         if (target != null)

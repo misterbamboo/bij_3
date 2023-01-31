@@ -1,7 +1,5 @@
-﻿using System;
+﻿using PathFinding;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 
 public class Map
 {
@@ -10,10 +8,13 @@ public class Map
     private int mapSize;
     private Dictionary<MapCellCoord, MapCell> mapCells;
 
+    private AStarPathFinding AStar { get; }
+
     public Map(int mapSize)
     {
         this.mapSize = mapSize;
         mapCells = new Dictionary<MapCellCoord, MapCell>();
+        AStar = new AStarPathFinding(new MapAStarGridInfo(this));
     }
 
     public void SetMapCellType(MapCellCoord coord, MapCellTypes type)
