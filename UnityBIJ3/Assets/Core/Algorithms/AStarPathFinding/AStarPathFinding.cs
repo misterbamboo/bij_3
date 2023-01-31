@@ -22,7 +22,6 @@ namespace PathFinding
 
         private AStarCell currentCandidate;
         public bool PathFound { get; private set; }
-        public bool NoDiagonals { get; set; }
         public AStarCell[][] AStarGrid { get; private set; }
         private IAStarGridInfo GridInfo { get; }
 
@@ -144,7 +143,7 @@ namespace PathFinding
 
         private void UpdateCurrentNeighbors()
         {
-            var arroundCells = cells.TouchArroundPoint(currentCandidate.XPos, currentCandidate.YPos, NoDiagonals);
+            var arroundCells = cells.TouchArroundPoint(currentCandidate.XPos, currentCandidate.YPos);
             foreach (var arroundCell in arroundCells)
             {
                 if (NeighborCanBeUpdated(arroundCell))

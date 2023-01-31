@@ -8,6 +8,16 @@ namespace PathFinding
         private AStarCell[][] AStarGrid { get; set; }
         private List<AStarCell> touchedCells;
 
+        private int[,] hexTouchArroundOffsets = new int[,]
+        {
+            { -1, -1 },
+            {  1, -1 },
+            { -2,  0 },
+            {  2,  0 },
+            { -1,  1 },
+            {  1,  1 },
+        };
+
         public AStarCellsHandler(AStarCell[][] aStarGrid)
         {
             AStarGrid = aStarGrid;
@@ -40,30 +50,17 @@ namespace PathFinding
             return cell;
         }
 
-        public IEnumerable<AStarCell> TouchArroundPoint(int x, int y, bool noDiagonals)
+        public IEnumerable<AStarCell> TouchArroundPoint(int x, int y)
         {
-            for (int xOff = -1; xOff <= 1; xOff++)
+            for (int i = 0; i < hexTouchArroundOffsets.GetLength(0); i++)
             {
-                for (int yOff = -1; yOff <= 1; yOff++)
+                var targetX = x + hexTouchArroundOffsets[i, 0];
+                var targetY = y + hexTouchArroundOffsets[i, 1];
+                if (targetX >= 0 && targetX < AStarGrid.Length)
                 {
-                    if (xOff == 0 && yOff == 0) continue;
-                    if (noDiagonals)
+                    if (targetY >= 0 && targetY < AStarGrid[0].Length)
                     {
-                        var diagonalSum = Math.Abs(xOff) + Math.Abs(yOff);
-                        if (diagonalSum >= 2)
-                        {
-                            continue;
-                        }
-                    }
-
-                    var targetX = x + xOff;
-                    var targetY = y + yOff;
-                    if (targetX >= 0 && targetX < AStarGrid.Length)
-                    {
-                        if (targetY >= 0 && targetY < AStarGrid[0].Length)
-                        {
-                            yield return Touch(targetX, targetY);
-                        }
+                        yield return Touch(targetX, targetY);
                     }
                 }
             }

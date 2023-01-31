@@ -34,6 +34,9 @@ public class Goat : MonoBehaviour
     List<GameObject> goatsBlocking = new List<GameObject>();
     private Map map;
 
+    private int currentXIndex;
+    private int currentZIndex;
+
     void Start()
     {
         var detectionZones = GetComponentsInChildren<DetectionZone>();
@@ -49,6 +52,36 @@ public class Goat : MonoBehaviour
         health.HealthUpdate += BloodParticle;
 
         map = MapGenerator.Instance.GetMap();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        ForceStayInMapBoundries();
+        CleanDestoyedBlockingGoats();
+
+        FindPathToBarn();
+
+        if (target != null)
+        {
+            animator.SetBool("walking", false);
+            grassParticle.Stop();
+            Attack();
+        }
+        else if (goatsBlocking.Count == 0)
+        {
+            if (animator.GetBool("walking") == false)
+            {
+                animator.SetBool("walking", true);
+                grassParticle.Play();
+            }
+            MoveForward();
+        }
+        else
+        {
+            grassParticle.Stop();
+            animator.SetBool("walking", false);
+        }
     }
 
     private void ForceStayInMapBoundries()
@@ -80,39 +113,13 @@ public class Goat : MonoBehaviour
         {
             var util = PlacingItemManager.Instance.PlacingItemUtils;
             var snapPosition = util.FindClosestSnapPosition(pos);
+            currentXIndex = snapPosition.XIndex;
+            currentZIndex = snapPosition.ZIndex;
             transform.position = new Vector3(snapPosition.Position.x, transform.position.y, snapPosition.Position.z);
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        ForceStayInMapBoundries();
-        CleanDestoyedBlocking();
-
-        if (target != null)
-        {
-            animator.SetBool("walking", false);
-            grassParticle.Stop();
-            Attack();
-        }
-        else if (goatsBlocking.Count == 0)
-        {
-            if (animator.GetBool("walking") == false)
-            {
-                animator.SetBool("walking", true);
-                grassParticle.Play();
-            }
-            MoveForward();
-        }
-        else
-        {
-            grassParticle.Stop();
-            animator.SetBool("walking", false);
-        }
-    }
-
-    private void CleanDestoyedBlocking()
+    private void CleanDestoyedBlockingGoats()
     {
         List<GameObject> toRemove = new List<GameObject>();
         foreach (var goatBlocking in goatsBlocking)
@@ -127,6 +134,11 @@ public class Goat : MonoBehaviour
         {
             goatsBlocking.Remove(remove);
         }
+    }
+
+    private void FindPathToBarn()
+    {
+        map.FindPathToBarn(currentXIndex, currentZIndex);
     }
 
     void MoveForward()

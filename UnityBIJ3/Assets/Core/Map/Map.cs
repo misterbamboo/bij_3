@@ -1,4 +1,5 @@
 ﻿using PathFinding;
+using System;
 using System.Collections.Generic;
 
 public class Map
@@ -9,6 +10,7 @@ public class Map
     private Dictionary<MapCellCoord, MapCell> mapCells;
 
     private AStarPathFinding AStar { get; }
+    private MapCellCoord? BarnCoords { get; set; }
 
     public Map(int mapSize)
     {
@@ -24,6 +26,11 @@ public class Map
         var cell = GetCellAt(coord);
         cell.Type = type;
         mapCells[coord] = cell;
+
+        if (type == MapCellTypes.Barn)
+        {
+            BarnCoords = coord;
+        }
     }
 
     public MapCellTypes GetMapCellType(int xCoord, int zCoord)
@@ -81,5 +88,16 @@ public class Map
             case MapCellTypes.Dirt:
                 return false;
         }
+    }
+
+    public void FindPathToBarn(int currentXIndex, int currentZIndex)
+    {
+        if (BarnCoords == null) return;
+
+        var start = new UnityEngine.Vector2(currentXIndex, currentZIndex);
+        var end = new UnityEngine.Vector2(BarnCoords.Value.Col, BarnCoords.Value.Row);
+        AStar.SearchPath(start, end);
+        AStar.StartSearching(10000);
+        var path = AStar.Path;
     }
 }
