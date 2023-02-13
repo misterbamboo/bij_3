@@ -2,7 +2,18 @@
 using System.Linq;
 using UnityEngine;
 
-public class MapDrawer : MonoBehaviour
+
+public interface IMapDrawer
+{
+    float MapDrawWidth { get; }
+    float HexWidth { get; }
+    float MapDrawHeight { get; }
+    float HexHeight { get; }
+
+    Vector3 GetWorldPos(int xCoord, int zCoord);
+}
+
+public class MapDrawer : MonoBehaviour, IMapDrawer
 {
     [SerializeField] GameObject[] fieldPrefabs;
     [SerializeField] GameObject[] fencePrefabs;
@@ -16,7 +27,7 @@ public class MapDrawer : MonoBehaviour
 
     [SerializeField] float hexSize = 1;
 
-    public static MapDrawer Instance { get; private set; }
+    public static IMapDrawer Instance { get; private set; }
 
     public float MapDrawWidth
     {
@@ -78,7 +89,7 @@ public class MapDrawer : MonoBehaviour
                 var xCoord = (x * 2) + (zCoord % 2);
                 var type = Map.GetMapCellType(xCoord, zCoord);
 
-                DrawHexPrefab(xCoord, zCoord, x, type);
+                DrawHexPrefab(xCoord, zCoord, type);
 
                 if (type == MapCellTypes.Fence)
                 {
@@ -88,10 +99,9 @@ public class MapDrawer : MonoBehaviour
         }
     }
 
-    private void DrawHexPrefab(int xCoord, int zCoord, int x, MapCellTypes type)
+    private void DrawHexPrefab(int xCoord, int zCoord, MapCellTypes type)
     {
-        var xOff = (zCoord % 2) * (hexWidth / 2f);
-        var pos = new Vector3(x * hexWidth + xOff, 0, zCoord * 3f / 4f * hexHeight);
+        Vector3 pos = GetWorldPos(xCoord, zCoord);
 
         GameObject prefab;
         switch (type)
@@ -124,6 +134,14 @@ public class MapDrawer : MonoBehaviour
         hexCellScript.SetData(xCoord, zCoord, pos);
 
         KeepHexMeshRendererCash(xCoord, zCoord, hex);
+    }
+
+    public Vector3 GetWorldPos(int xCoord, int zCoord)
+    {
+        var xOff = (zCoord % 2) * (hexWidth / 2f);
+        var xCount = xCoord / 2;
+        var pos = new Vector3(xCount * hexWidth + xOff, 0, zCoord * 3f / 4f * hexHeight);
+        return pos;
     }
 
     private void KeepHexMeshRendererCash(int xCoord, int zCoord, GameObject hex)

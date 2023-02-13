@@ -47,5 +47,5 @@ MonoBehaviour:
   SheepSpeedAugmentationPerItem: 1
   VisionReductionPerItem: 0.1
   CurrentSpawnRate: 1
-  CurrentSheepSpeed: 10
+  CurrentSheepSpeed: 1
   CurrentVision: 1

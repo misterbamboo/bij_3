@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +32,15 @@ public class Goat : MonoBehaviour
 
     List<GameObject> goatsBlocking = new List<GameObject>();
     private Map map;
-
+    private IMapDrawer mapDrawer;
     private int currentXIndex;
     private int currentZIndex;
+
+    private Vector3 lastPoint = Vector3.zero;
+    private Vector3 nextPoint = Vector3.zero;
+    private float lastToNextPointT = 0;
+
+    public List<Vector3> pathToBarn { get; private set; } = new List<Vector3>();
 
     void Start()
     {
@@ -52,6 +57,7 @@ public class Goat : MonoBehaviour
         health.HealthUpdate += BloodParticle;
 
         map = MapGenerator.Instance.GetMap();
+        mapDrawer = MapDrawer.Instance;
     }
 
     // Update is called once per frame
@@ -60,7 +66,7 @@ public class Goat : MonoBehaviour
         ForceStayInMapBoundries();
         CleanDestoyedBlockingGoats();
 
-        FindPathToBarn();
+        SearchForPathToBarn();
 
         if (target != null)
         {
@@ -75,7 +81,7 @@ public class Goat : MonoBehaviour
                 animator.SetBool("walking", true);
                 grassParticle.Play();
             }
-            MoveForward();
+            MoveOnPathToBarn();
         }
         else
         {
@@ -93,9 +99,9 @@ public class Goat : MonoBehaviour
             pos.x = 0;
             positionChanged = true;
         }
-        if (pos.x >= MapDrawer.Instance.MapDrawWidth)
+        if (pos.x >= mapDrawer.MapDrawWidth)
         {
-            pos.x = MapDrawer.Instance.MapDrawWidth - MapDrawer.Instance.HexWidth * 2;
+            pos.x = mapDrawer.MapDrawWidth - mapDrawer.HexWidth * 2;
             positionChanged = true;
         }
         if (pos.z < 0)
@@ -103,9 +109,9 @@ public class Goat : MonoBehaviour
             pos.z = 0;
             positionChanged = true;
         }
-        if (pos.z >= MapDrawer.Instance.MapDrawHeight)
+        if (pos.z >= mapDrawer.MapDrawHeight)
         {
-            pos.z = MapDrawer.Instance.MapDrawHeight - MapDrawer.Instance.HexHeight * 2;
+            pos.z = mapDrawer.MapDrawHeight - mapDrawer.HexHeight * 2;
             positionChanged = true;
         }
 
@@ -113,8 +119,15 @@ public class Goat : MonoBehaviour
         {
             var util = PlacingItemManager.Instance.PlacingItemUtils;
             var snapPosition = util.FindClosestSnapPosition(pos);
-            currentXIndex = snapPosition.XIndex;
-            currentZIndex = snapPosition.ZIndex;
+            currentXIndex = snapPosition.XIndex < 0 ? snapPosition.XIndex + 2 : snapPosition.XIndex;
+            currentZIndex = snapPosition.ZIndex < 0 ? snapPosition.ZIndex + 2 : snapPosition.ZIndex;
+
+            // Should respect HexGrid restriction
+            if ((currentXIndex + currentZIndex) % 2 != 0)
+            {
+                currentZIndex++;
+            }
+
             transform.position = new Vector3(snapPosition.Position.x, transform.position.y, snapPosition.Position.z);
         }
     }
@@ -136,14 +149,46 @@ public class Goat : MonoBehaviour
         }
     }
 
-    private void FindPathToBarn()
+    private void SearchForPathToBarn()
     {
-        map.FindPathToBarn(currentXIndex, currentZIndex);
+        if (!pathToBarn.Any())
+        {
+            var pathToBarnInIndexes = map.FindPathToBarn(currentXIndex, currentZIndex);
+            pathToBarn = pathToBarnInIndexes.Select(i => mapDrawer.GetWorldPos((int)i.x, (int)i.y)).ToList();
+        }
     }
 
-    void MoveForward()
+    void MoveOnPathToBarn()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        if (!pathToBarn.Any()) return;
+
+        if (nextPoint == Vector3.zero)
+        {
+            lastPoint = transform.position;
+            var p = pathToBarn.First();
+            p.y = transform.position.y;
+            nextPoint = p;
+            lastToNextPointT = 0;
+        }
+
+        lastToNextPointT += Time.deltaTime * speed;
+        var newPos = Vector3.Lerp(lastPoint, nextPoint, lastToNextPointT);
+        transform.position = newPos;
+
+        var direction = (nextPoint - newPos);
+        var targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 0.99f * Time.deltaTime * 5f);
+
+        var distanceToNextPoint = direction.magnitude;
+        if (distanceToNextPoint < 0.1 && pathToBarn.Count() > 1)
+        {
+            pathToBarn.RemoveAt(0);
+            lastPoint = transform.position;
+            var p = pathToBarn.First();
+            p.y = transform.position.y;
+            nextPoint = p;
+            lastToNextPointT = 0;
+        }
     }
 
     void FocusTarget(GameObject target)

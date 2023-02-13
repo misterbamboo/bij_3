@@ -5019,7 +5019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   domage: 5
-  speed: 10
+  speed: 1
   attackCooldownInSeconds: 3
   moneyValue: 25
   animator: {fileID: 8905318354763722170}

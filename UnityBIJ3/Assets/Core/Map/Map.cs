@@ -1,6 +1,7 @@
 ﻿using PathFinding;
-using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class Map
 {
@@ -79,10 +80,11 @@ public class Map
         {
             case MapCellTypes.None:
             case MapCellTypes.Fence:
-            case MapCellTypes.Barn:
             case MapCellTypes.Turret:
             default:
                 return true;
+            // Exception for Barn (should be "walkable" for AStar algo, but will be handle visually with sheep to don't go over it)
+            case MapCellTypes.Barn:
             case MapCellTypes.Empty:
             case MapCellTypes.Field:
             case MapCellTypes.Dirt:
@@ -90,14 +92,14 @@ public class Map
         }
     }
 
-    public void FindPathToBarn(int currentXIndex, int currentZIndex)
+    public IEnumerable<Vector2> FindPathToBarn(int currentXIndex, int currentZIndex)
     {
-        if (BarnCoords == null) return;
+        if (BarnCoords == null) return Enumerable.Empty<Vector2>();
 
         var start = new UnityEngine.Vector2(currentXIndex, currentZIndex);
         var end = new UnityEngine.Vector2(BarnCoords.Value.Col, BarnCoords.Value.Row);
         AStar.SearchPath(start, end);
         AStar.StartSearching(10000);
-        var path = AStar.Path;
+        return AStar.Path;
     }
 }

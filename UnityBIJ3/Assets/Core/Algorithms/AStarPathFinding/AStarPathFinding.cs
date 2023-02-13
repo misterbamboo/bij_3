@@ -82,6 +82,7 @@ namespace PathFinding
             }
 
             currentCandidate = PullNextCandidate();
+            // Debug.Log($"{currentCandidate.XPos}, {currentCandidate.YPos}");
 
             if (ArrivedAtEnd())
             {

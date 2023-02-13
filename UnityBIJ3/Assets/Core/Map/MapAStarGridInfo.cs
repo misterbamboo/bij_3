@@ -15,6 +15,6 @@ public class MapAStarGridInfo : IAStarGridInfo
 
     public bool IsWalkable(int x, int y)
     {
-        return Map.IsBlocked(new MapCellCoord(x, y));
+        return !Map.IsBlocked(new MapCellCoord(x, y));
     }
 }

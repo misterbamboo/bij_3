@@ -12,7 +12,7 @@ public class SideEffectManager : MonoBehaviour
 
     [Header("Current Rates")]
     [SerializeField] private float CurrentSpawnRate = 1;
-    [SerializeField] private float CurrentSheepSpeed = 10;
+    [SerializeField] private float CurrentSheepSpeed = 1;
     [SerializeField] private float CurrentVision = 1;
 
     private void Awake()

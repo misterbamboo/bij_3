@@ -121,16 +121,7 @@ namespace PathFinding
             var xDiff = Math.Abs(x - XPos);
             var yDiff = Math.Abs(y - YPos);
 
-            var smallest = xDiff < yDiff ? xDiff : yDiff;
-            var diagonalCost = smallest * 14;
-
-            var linearXDiffLeftover = xDiff - smallest;
-            var linearYDiffLeftover = yDiff - smallest;
-
-            var biggestLeftover = linearXDiffLeftover > linearYDiffLeftover ? linearXDiffLeftover : linearYDiffLeftover;
-            var linearCost = biggestLeftover * 10;
-
-            return diagonalCost + linearCost;
+            return xDiff + yDiff;
         }
     }
 }
